@@ -1,0 +1,18 @@
+.header {
+  position: relative; }
+  .header-nav {
+    display: flex;
+    justify-content: space-between; }
+    .header-nav img {
+      width: 100%;
+      max-width: 105px; }
+  .header .navbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; }
+    .header .navbar li {
+      text-decoration: none;
+      list-style-type: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.15em; }
