@@ -1,93 +1,74 @@
 import { useEffect, useState } from "react";
 import { EventCard } from "../components/eventCard";
-import { Footer } from "../components/footer";
-import { Header } from "../components/header";
 
-export const Home = () => {
-	const [homeData, setHomeData] = useState([]);
+export const Home = ({ data }) => {
+	console.log("Home page data", data);
 	const [events, setEvents] = useState([]);
+	// const [homeData, setHomeData] = useState([]);
 
-	const icaResponse = async () => {
-		await fetch("http://dev.ica-eurasia.com/wp-json/acf/v3/pages/2")
-			.then((res) => {
-				const fetchResponse = res.json();
-				console.log("fetchResponse", fetchResponse);
-				return fetchResponse;
-			})
-			.then((res) => {
-				const response = res.acf;
-				console.log(response);
-				setHomeData(response);
-				getEvents(response);
-			});
-	};
+	// useEffect(() => {
+	// 	setHomeData(data);
+	// }, []);
 
-	const getEvents = async (data) => {
-		const api = data.api_list[1];
-		await fetch(api.api_url, {
-			method: "POST",
-			body: JSON.stringify({
-				apiKey: api.apiKey,
-				lang: api.lang,
-				projectID: 0,
-			}),
-		})
-			.then((res) => {
-				const apiData = res.json();
-				return apiData;
-			})
-			.then((events) => {
-				console.log(events.confList);
+	// const getEvents = async (data) => {
+	// 	console.log("data.acf.api_list", data.acf.api_list);
+	// 	const api = data.acf.api_list[0];
+	// 	await fetch(api.api_url, {
+	// 		method: "POST",
+	// 		body: JSON.stringify({
+	// 			apiKey: api.apiKey,
+	// 			lang: "ru",
+	// 			// lang: api.lang,
+	// 			projectID: 0,
+	// 		}),
+	// 	})
+	// 		.then((res) => {
+	// 			const apiData = res.json();
+	// 			return apiData;
+	// 		})
+	// 		.then((events) => {
+	// 			events.confList.forEach((item) => {
+	// 				let beginDate = new Date(item.beginDate.split(" ")[0]),
+	// 					endDate = new Date(item.endDate);
 
-				events.confList.forEach((item) => {
-					let beginDate = new Date(item.beginDate.split(" ")[0]),
-						endDate = new Date(item.endDate);
+	// 				// console.log(beginDate);
 
-					console.log(beginDate);
+	// 				if (
+	// 					beginDate.toLocaleString("en", { month: "long" }) ==
+	// 					endDate.toLocaleString("en", { month: "long" })
+	// 				) {
+	// 					item.textDate = `${beginDate.toLocaleString("en", {
+	// 						day: "numeric",
+	// 					})} - ${endDate.toLocaleString("en", {
+	// 						day: "numeric",
+	// 					})} ${endDate.toLocaleString("en", {
+	// 						month: "long",
+	// 					})} ${endDate.toLocaleString("en", { year: "numeric" })}`;
+	// 				} else {
+	// 					item.textDate = `${beginDate.toLocaleString("en", {
+	// 						day: "numeric",
+	// 					})} ${beginDate.toLocaleString("en", {
+	// 						month: "long",
+	// 					})} - ${endDate.toLocaleString("en", {
+	// 						day: "numeric",
+	// 					})} ${endDate.toLocaleString("en", {
+	// 						month: "long",
+	// 					})} ${endDate.toLocaleString("en", { year: "numeric" })}`;
+	// 				}
+	// 			});
 
-					if (
-						beginDate.toLocaleString("en", { month: "long" }) ==
-						endDate.toLocaleString("en", { month: "long" })
-					) {
-						item.textDate = `${beginDate.toLocaleString("en", {
-							day: "numeric",
-						})} - ${endDate.toLocaleString("en", {
-							day: "numeric",
-						})} ${endDate.toLocaleString("en", {
-							month: "long",
-						})} ${endDate.toLocaleString("en", { year: "numeric" })}`;
-					} else {
-						item.textDate = `${beginDate.toLocaleString("en", {
-							day: "numeric",
-						})} ${beginDate.toLocaleString("en", {
-							month: "long",
-						})} - ${endDate.toLocaleString("en", {
-							day: "numeric",
-						})} ${endDate.toLocaleString("en", {
-							month: "long",
-						})} ${endDate.toLocaleString("en", { year: "numeric" })}`;
-					}
-					console.log("data", item);
-				});
+	// 			return events.confList;
+	// 		});
+	// };
 
-				console.log(events.confList);
-
-				setEvents(events.confList);
-			});
-	};
-
-	useEffect(() => {
-		icaResponse();
-	}, []);
+	// useEffect(() => setEvents(getEvents), []);
 
 	return (
 		<div>
 			<div className="hero">
 				<div className="container">
-					<h1 className="hero__title">{homeData ? homeData.title : null}</h1>
-					<h2 className="hero__subtitle">
-						{homeData ? homeData.subtitle : null}
-					</h2>
+					<h1 className="hero__title">{data ? data.acf.title : null}</h1>
+					<h2 className="hero__subtitle">{data ? data.subtitle : null}</h2>
 				</div>
 			</div>
 			<section className="search search">
@@ -130,11 +111,11 @@ export const Home = () => {
 						</div>
 					</div>
 					<div className="cards">
-						{events
+						{/* {events
 							? events.map((item) => {
 									return <EventCard event={item} key={item.projectID} />;
 							  })
-							: null}
+							: null} */}
 					</div>
 				</div>
 			</section>
