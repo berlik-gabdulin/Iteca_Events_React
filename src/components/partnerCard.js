@@ -8,7 +8,7 @@ export const Partner = ({ data }) => {
 			<div className="group-item item" key={partner.partners_name}>
 				<div className="item-card">
 					<div className="item-card__title">
-						<img src={partner.logo.url} alt="" />
+						<img src={partner.logo_url} alt="" />
 						<p>{partner.partners_name}</p>
 					</div>
 					<div className="item-card__text">
@@ -28,7 +28,7 @@ export const Partner = ({ data }) => {
 					</a>
 				</div>
 				<div className="group-item-img">
-					<img src={partner.photo.url} alt="" />
+					<img src={partner.photo_url} alt="" />
 				</div>
 			</div>
 		);

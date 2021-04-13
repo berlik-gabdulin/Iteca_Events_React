@@ -1,45 +1,41 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Partner } from "../components/partnerCard";
+import { setIsHome } from "../store/action";
 
 export const OurPartners = () => {
-	const [partners, setPartners] = useState([]);
-	const [orgs, setOrgs] = useState([]);
+	const dispatch = useDispatch();
+	const data = useSelector((state) => {
+		return state.partners;
+	});
+	console.log("homeData", data);
+	dispatch(setIsHome(false));
 
-	const getPartners = async () => {
-		const partners = await fetch(
-			"http://dev.ica-eurasia.com/wp-json/acf/v3/pages/19"
-		)
-			.then((res) => {
-				return res.json();
-			})
-			.then((res) => {
-				const orgs = res.acf.partners_info.filter(
-					(item) => item.partner_type.value === "coOrganizer"
-				);
-				console.log(orgs);
-				const partners = res.acf.partners_info.filter(
-					(item) => item.partner_type.value === "partner"
-				);
-				setOrgs(orgs);
-				setPartners(partners);
-			});
-		return partners;
-	};
-
-	useEffect(() => {
-		getPartners();
-	}, []);
+	const orgs = data.partners_info.filter(
+		(item) => item.partner_type === "coOrganizer"
+	);
+	const partners = data.partners_info.filter(
+		(item) => item.partner_type === "partner"
+	);
 
 	return (
 		<section className="partners-group group">
 			<div className="container">
 				<div className="wrapper">
-					<div className="group__title">CO-ORGANISERS</div>
-					{orgs ? <Partner data={orgs} /> : null}
+					{orgs ? (
+						<>
+							<div className="group__title">CO-ORGANISERS</div>
+							<Partner data={orgs} />
+						</>
+					) : null}
 				</div>
 				<div className="wrapper">
-					<div className="group__title">PARTNERS</div>
-					{partners ? <Partner data={partners} /> : null}
+					{partners ? (
+						<>
+							<div className="group__title">PARTNERS</div>
+							<Partner data={partners} />
+						</>
+					) : null}
 				</div>
 			</div>
 		</section>

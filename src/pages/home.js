@@ -1,16 +1,13 @@
 // import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsHome } from "../store/action";
 // import { EventCard } from "../components/eventCard";
 
 export const Home = () => {
-	const homeData = useSelector((state) =>
-		state.data ? state.data.json() : null
-	);
-	console.log("homeData", homeData);
+	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	setHomeData(data);
-	// }, []);
+	dispatch(setIsHome(true));
 
 	// const getEvents = async (data) => {
 	// 	console.log("data.acf.api_list", data.acf.api_list);
@@ -67,12 +64,6 @@ export const Home = () => {
 
 	return (
 		<div>
-			<div className="hero">
-				<div className="container">
-					{/* <h1 className="hero__title">{data ? data.acf.title : null}</h1>
-					<h2 className="hero__subtitle">{data ? data.subtitle : null}</h2> */}
-				</div>
-			</div>
 			<section className="search search">
 				<div className="container">
 					<div className="search-form">

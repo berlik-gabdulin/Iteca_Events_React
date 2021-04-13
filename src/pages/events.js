@@ -4,11 +4,6 @@ export const Events = () => {
 	useEffect(() => console.log("Events"), []);
 	return (
 		<>
-			<section className="events">
-				<div className="container">
-					<h3 className="section__title">Events</h3>
-				</div>
-			</section>
 			<section className="events-cards">
 				<div className="container">
 					<div className="cards">

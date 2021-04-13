@@ -9,29 +9,54 @@ import { Events } from "../pages/events";
 import { OurGlobalNetwork } from "../pages/ourGlobalNetwork";
 import { OurPartners } from "../pages/ourPartners";
 import { useDispatch, useSelector } from "react-redux";
-import { dataLoaded } from "../store/action";
+import {
+	setData,
+	setHomeData,
+	setEvent,
+	setPartnersData,
+	setIsHome,
+} from "../store/action";
 import { axiosInstance } from "../server/axiosInstance";
+import { HeaderPage } from "./headerPage";
+import { HeaderHome } from "./headerHome";
 
 export const App = () => {
 	const dispatch = useDispatch();
-	const getHomeData = () =>
-		axiosInstance.get(axiosInstance.defaults.baseURL).then((res) => res.data);
-	setTimeout(() => {
-		console.log(getHomeData());
-	}, 2000);
+	const _baseUrl = axiosInstance.defaults.baseURL;
 
-	// useEffect(() => {
-	// 	dispatch(dataLoaded(getHomeData()));
-	// }, [dispatch]);
+	const isHome = useSelector((state) => {
+		return state.isHome;
+	});
 
-	// const appHomeData = useSelector((state) => {
-	// 	// console.log("state.data", state.data);
-	// });
+	const getData = () =>
+		axiosInstance.get(_baseUrl).then((res) => {
+			dispatch(setData(res.data));
+			dispatch(setHomeData(res.data.find((item) => item.id === 2).acf));
+
+			const partnersData = res.data.find((item) => item.id === 19).acf;
+			const partnersDispatchData = {
+				page_title: partnersData.page_title,
+				partners_info: partnersData.partners_info.map((item) => {
+					return {
+						partners_name: item.page_title,
+						logo_url: item.logo.url,
+						description: item.description,
+						website_link: item.wwebsite_link,
+						photo_url: item.photo.url,
+						partner_type: item.partner_type.value,
+					};
+				}),
+			};
+			dispatch(setPartnersData(partnersDispatchData));
+		});
+
+	useEffect(() => getData());
 
 	return (
 		<>
 			<Router>
 				<Header />
+				{isHome === true ? <HeaderHome /> : <HeaderPage />}
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/about-us" component={AboutUs} />
