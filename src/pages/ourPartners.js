@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Partner } from "../components/partnerCard";
-import { setIsHome } from "../store/action";
+import { setHeadTitle } from "../store/action";
 
 export const OurPartners = () => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => {
 		return state.partners;
 	});
-	console.log("homeData", data);
-	dispatch(setIsHome(false));
+	dispatch(
+		setHeadTitle({
+			isHome: false,
+			pageTitle: data.page_title,
+		})
+	);
 
 	const orgs = data.partners_info.filter(
 		(item) => item.partner_type === "coOrganizer"

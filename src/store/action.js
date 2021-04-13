@@ -1,8 +1,10 @@
 export const SET_DATA = "SET_DATA";
 export const SET_EVENTS = "SET_EVENTS";
 export const SET_HOME_DATA = "SET_HOME_DATA";
+export const SET_ABOUT_DATA = "SET_ABOUT_DATA";
 export const SET_PARTNERS_DATA = "SET_PARTNERS_DATA";
-export const SET_IS_HOME = "SET_IS_HOME";
+export const SET_HEAD_TITLE = "SET_HEAD_TITLE";
+export const SET_CONTACTS = "SET_CONTACTS";
 
 const setData = (data) => {
 	return {
@@ -14,6 +16,13 @@ const setData = (data) => {
 const setHomeData = (data) => {
 	return {
 		type: SET_HOME_DATA,
+		payload: data,
+	};
+};
+
+const setAboutData = (data) => {
+	return {
+		type: SET_ABOUT_DATA,
 		payload: data,
 	};
 };
@@ -32,11 +41,25 @@ const setPartnersData = (data) => {
 	};
 };
 
-const setIsHome = (bool) => {
+const setHeadTitle = (bool) => {
 	return {
-		type: SET_IS_HOME,
+		type: SET_HEAD_TITLE,
+		payload: bool,
+	};
+};
+const setContacts = (bool) => {
+	return {
+		type: SET_CONTACTS,
 		payload: bool,
 	};
 };
 
-export { setData, setHomeData, setEvent, setPartnersData, setIsHome };
+export {
+	setData,
+	setHomeData,
+	setAboutData,
+	setEvent,
+	setPartnersData,
+	setHeadTitle,
+	setContacts,
+};

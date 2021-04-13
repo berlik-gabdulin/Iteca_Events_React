@@ -12,9 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
 	setData,
 	setHomeData,
+	setAboutData,
 	setEvent,
 	setPartnersData,
-	setIsHome,
+	setHeadTitle,
+	setContacts,
 } from "../store/action";
 import { axiosInstance } from "../server/axiosInstance";
 import { HeaderPage } from "./headerPage";
@@ -33,6 +35,13 @@ export const App = () => {
 			dispatch(setData(res.data));
 			dispatch(setHomeData(res.data.find((item) => item.id === 2).acf));
 
+			const aboutData = res.data.find((item) => item.id === 12).acf;
+			const aboutDispatchData = {
+				page_title: aboutData.page_title,
+				text_about: aboutData.text_about.split("<br />"),
+			};
+			dispatch(setAboutData(aboutDispatchData));
+
 			const partnersData = res.data.find((item) => item.id === 19).acf;
 			const partnersDispatchData = {
 				page_title: partnersData.page_title,
@@ -48,15 +57,28 @@ export const App = () => {
 				}),
 			};
 			dispatch(setPartnersData(partnersDispatchData));
+			dispatch(
+				setHeadTitle({
+					isHome: true,
+					pageTitle: "",
+				})
+			);
+
+			let contactsData = res.data.find((item) => item.id === 21).acf;
+			contactsData = {
+				...contactsData,
+				hours: contactsData.hours.split("<br />"),
+			};
+			dispatch(setContacts(contactsData));
 		});
 
-	useEffect(() => getData());
+	useEffect(() => getData(), []);
 
 	return (
 		<>
 			<Router>
 				<Header />
-				{isHome === true ? <HeaderHome /> : <HeaderPage />}
+				{isHome ? <HeaderHome /> : <HeaderPage />}
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/about-us" component={AboutUs} />

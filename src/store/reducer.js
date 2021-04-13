@@ -2,7 +2,10 @@ import {
 	SET_DATA,
 	SET_EVENTS,
 	SET_HOME_DATA,
+	SET_ABOUT_DATA,
 	SET_PARTNERS_DATA,
+	SET_HEAD_TITLE,
+	SET_CONTACTS,
 } from "./action";
 
 const initialState = {
@@ -17,7 +20,10 @@ const initialState = {
 				apiKey: "",
 			},
 		],
-		isHome: true,
+	},
+	about: {
+		page_title: "",
+		text_about: [""],
 	},
 	partners: {
 		page_title: "",
@@ -32,15 +38,27 @@ const initialState = {
 			},
 		],
 	},
+	contacts: {
+		page_title: "",
+		phone: "",
+		address: "",
+		hours: [""],
+		map_link: "",
+		page_img: false,
+	},
 	events: [
 		{
 			image_profile: "",
 			project: "",
 			description: "",
 			textDate: "",
+			beginDate: "",
 			location: "",
+			industry: "",
 		},
 	],
+	isHome: true,
+	pageTitle: "",
 };
 
 export const reducer = (state = initialState, action) => {
@@ -55,6 +73,11 @@ export const reducer = (state = initialState, action) => {
 				...state,
 				homeData: action.payload,
 			};
+		case SET_ABOUT_DATA:
+			return {
+				...state,
+				about: action.payload,
+			};
 		case SET_EVENTS:
 			return {
 				...state,
@@ -64,6 +87,17 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				partners: action.payload,
+			};
+		case SET_HEAD_TITLE:
+			return {
+				...state,
+				isHome: action.payload.isHome,
+				pageTitle: action.payload.pageTitle,
+			};
+		case SET_CONTACTS:
+			return {
+				...state,
+				contacts: action.payload,
 			};
 		default:
 			return state;

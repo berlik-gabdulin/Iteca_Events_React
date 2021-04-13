@@ -1,13 +1,24 @@
 // import { useEffect, useState } from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsHome } from "../store/action";
+import { setHeadTitle } from "../store/action";
 // import { EventCard } from "../components/eventCard";
 
 export const Home = () => {
 	const dispatch = useDispatch();
 
-	dispatch(setIsHome(true));
+	const isHome = useSelector((state) => {
+		return state.isHome;
+	});
+
+	if (!isHome) {
+		dispatch(
+			setHeadTitle({
+				isHome: true,
+				pageTitle: "",
+			})
+		);
+	}
 
 	// const getEvents = async (data) => {
 	// 	console.log("data.acf.api_list", data.acf.api_list);
