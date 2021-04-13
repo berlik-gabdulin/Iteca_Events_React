@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { axiosInstance } from "../server/axiosInstance";
 import { Partner } from "../components/partnerCard";
 
 export const OurPartners = () => {
@@ -24,7 +23,7 @@ export const OurPartners = () => {
 				setOrgs(orgs);
 				setPartners(partners);
 			});
-		// return partners;
+		return partners;
 	};
 
 	useEffect(() => {

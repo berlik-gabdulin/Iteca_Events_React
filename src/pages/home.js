@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
-import { EventCard } from "../components/eventCard";
+// import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+// import { EventCard } from "../components/eventCard";
 
-export const Home = ({ data }) => {
-	console.log("Home page data", data);
-	const [events, setEvents] = useState([]);
-	// const [homeData, setHomeData] = useState([]);
+export const Home = () => {
+	const homeData = useSelector((state) =>
+		state.data ? state.data.json() : null
+	);
+	console.log("homeData", homeData);
 
 	// useEffect(() => {
 	// 	setHomeData(data);
@@ -67,8 +69,8 @@ export const Home = ({ data }) => {
 		<div>
 			<div className="hero">
 				<div className="container">
-					<h1 className="hero__title">{data ? data.acf.title : null}</h1>
-					<h2 className="hero__subtitle">{data ? data.subtitle : null}</h2>
+					{/* <h1 className="hero__title">{data ? data.acf.title : null}</h1>
+					<h2 className="hero__subtitle">{data ? data.subtitle : null}</h2> */}
 				</div>
 			</div>
 			<section className="search search">

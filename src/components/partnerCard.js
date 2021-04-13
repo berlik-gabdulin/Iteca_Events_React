@@ -18,7 +18,12 @@ export const Partner = ({ data }) => {
 							}
 						})}
 					</div>
-					<a href={partner.website_link} nofollow noref target="_blank">
+					<a
+						href={partner.website_link}
+						nofollow
+						rel="noreferrer"
+						target="_blank"
+					>
 						Go to website
 					</a>
 				</div>

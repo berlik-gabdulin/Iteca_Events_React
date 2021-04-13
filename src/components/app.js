@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Header } from "./header";
 import { Footer } from "./footer";
@@ -8,34 +8,32 @@ import { Contacts } from "../pages/contacts";
 import { Events } from "../pages/events";
 import { OurGlobalNetwork } from "../pages/ourGlobalNetwork";
 import { OurPartners } from "../pages/ourPartners";
+import { useDispatch, useSelector } from "react-redux";
+import { dataLoaded } from "../store/action";
+import { axiosInstance } from "../server/axiosInstance";
 
 export const App = () => {
-	const [appHomeData, setAppData] = useState();
+	const dispatch = useDispatch();
+	const getHomeData = () =>
+		axiosInstance.get(axiosInstance.defaults.baseURL).then((res) => res.data);
+	setTimeout(() => {
+		console.log(getHomeData());
+	}, 2000);
 
-	const getHomeData = async () => {
-		await fetch("http://dev.ica-eurasia.com/wp-json/wp/v2/pages/2")
-			.then((res) => {
-				const fetchResponse = res.json();
-				console.log("fetchResponse", fetchResponse);
-				return fetchResponse;
-			})
-			.then((res) => {
-				return res;
-			});
-	};
+	// useEffect(() => {
+	// 	dispatch(dataLoaded(getHomeData()));
+	// }, [dispatch]);
 
-	useEffect(() => {
-		setAppData(getHomeData());
-	}, []);
+	// const appHomeData = useSelector((state) => {
+	// 	// console.log("state.data", state.data);
+	// });
 
 	return (
 		<>
 			<Router>
 				<Header />
 				<Switch>
-					{appHomeData !== undefined ? (
-						<Route exact path="/" component={Home} data={appHomeData} />
-					) : null}
+					<Route exact path="/" component={Home} />
 					<Route path="/about-us" component={AboutUs} />
 					<Route path="/events" component={Events} />
 					<Route path="/our-global-network" component={OurGlobalNetwork} />
