@@ -1,15 +1,10 @@
-import { React, useCallback, useEffect } from "react";
+import { React } from "react";
 import { HeaderPage } from "./headerPage";
 import { HeaderHome } from "./headerHome";
 import { Nav } from "./nav";
-import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 
 export const Header = () => {
-	const isHome = useSelector((state) => {
-		return state.isHome;
-	});
-
 	const { pathname } = useLocation();
 
 	return (
