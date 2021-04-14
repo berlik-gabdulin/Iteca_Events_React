@@ -13,22 +13,15 @@ import {
 	setData,
 	setHomeData,
 	setAboutData,
-	setEvent,
+	// setEvent,
 	setPartnersData,
-	setHeadTitle,
 	setContacts,
 } from "../store/action";
 import { axiosInstance } from "../server/axiosInstance";
-import { HeaderPage } from "./headerPage";
-import { HeaderHome } from "./headerHome";
 
 export const App = () => {
 	const dispatch = useDispatch();
 	const _baseUrl = axiosInstance.defaults.baseURL;
-
-	const isHome = useSelector((state) => {
-		return state.isHome;
-	});
 
 	const getData = () =>
 		axiosInstance.get(_baseUrl).then((res) => {
@@ -57,12 +50,6 @@ export const App = () => {
 				}),
 			};
 			dispatch(setPartnersData(partnersDispatchData));
-			dispatch(
-				setHeadTitle({
-					isHome: true,
-					pageTitle: "",
-				})
-			);
 
 			let contactsData = res.data.find((item) => item.id === 21).acf;
 			contactsData = {
@@ -78,7 +65,6 @@ export const App = () => {
 		<>
 			<Router>
 				<Header />
-				{isHome ? <HeaderHome /> : <HeaderPage />}
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/about-us" component={AboutUs} />

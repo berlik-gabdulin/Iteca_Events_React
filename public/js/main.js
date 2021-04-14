@@ -1,9 +1,6 @@
 $(document).ready(function () {
 	// Диалоговое окно
 	$(".custom").magnificPopup({
-		// type: "inline",
-		// preloader: false,
-		// modal: true,
 		items: {
 			src: "#feedback-modal",
 			type: "inline",

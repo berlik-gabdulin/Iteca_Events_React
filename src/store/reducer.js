@@ -4,7 +4,6 @@ import {
 	SET_HOME_DATA,
 	SET_ABOUT_DATA,
 	SET_PARTNERS_DATA,
-	SET_HEAD_TITLE,
 	SET_CONTACTS,
 } from "./action";
 
@@ -57,8 +56,6 @@ const initialState = {
 			industry: "",
 		},
 	],
-	isHome: true,
-	pageTitle: "",
 };
 
 export const reducer = (state = initialState, action) => {
@@ -87,12 +84,6 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				partners: action.payload,
-			};
-		case SET_HEAD_TITLE:
-			return {
-				...state,
-				isHome: action.payload.isHome,
-				pageTitle: action.payload.pageTitle,
 			};
 		case SET_CONTACTS:
 			return {
