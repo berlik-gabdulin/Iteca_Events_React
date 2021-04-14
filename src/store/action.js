@@ -26,7 +26,7 @@ const setAboutData = (data) => {
 	};
 };
 
-const setEvent = (events) => {
+const setEvents = (events) => {
 	return {
 		type: SET_EVENTS,
 		payload: events,
@@ -51,7 +51,7 @@ export {
 	setData,
 	setHomeData,
 	setAboutData,
-	setEvent,
+	setEvents,
 	setPartnersData,
 	setContacts,
 };

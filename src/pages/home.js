@@ -1,7 +1,16 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { EventCard } from "../components/eventCard";
+import { EventCard } from "../components/eventCard";
+import { setEvents } from "../store/action";
 
 export const Home = () => {
+	const { apiList } = useSelector(({ homeData: { api_list: apiList } }) => ({
+		apiList,
+	}));
+
+	console.log(apiList);
+
+	// const [events, setEvents] = useState([]);
 	// const getEvents = async (data) => {
 	// 	console.log("data.acf.api_list", data.acf.api_list);
 	// 	const api = data.acf.api_list[0];
@@ -9,13 +18,14 @@ export const Home = () => {
 	// 		method: "POST",
 	// 		body: JSON.stringify({
 	// 			apiKey: api.apiKey,
-	// 			lang: "ru",
-	// 			// lang: api.lang,
+	// 			// lang: "ru",
+	// 			lang: api.lang,
 	// 			projectID: 0,
 	// 		}),
 	// 	})
 	// 		.then((res) => {
 	// 			const apiData = res.json();
+	// 			console.log("apiData", apiData);
 	// 			return apiData;
 	// 		})
 	// 		.then((events) => {
@@ -52,8 +62,9 @@ export const Home = () => {
 	// 			return events.confList;
 	// 		});
 	// };
+	// console.log(getEvents());
 
-	// useEffect(() => setEvents(getEvents), []);
+	// useEffect(() => getEvents(), []);
 
 	return (
 		<div>
