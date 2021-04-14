@@ -10,6 +10,15 @@ export const Home = () => {
 
 	console.log(apiList);
 
+	const eventsArray = [];
+
+	apiList.map((apiItem) => {
+		const title = apiItem.title_api,
+			url = apiItem.api_url,
+			apiKey = apiItem.apiKey;
+		console.log(title, " ", url, " ", apiKey);
+	});
+
 	// const [events, setEvents] = useState([]);
 	// const getEvents = async (data) => {
 	// 	console.log("data.acf.api_list", data.acf.api_list);
