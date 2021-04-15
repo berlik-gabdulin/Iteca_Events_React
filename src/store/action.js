@@ -4,6 +4,7 @@ export const SET_HOME_DATA = "SET_HOME_DATA";
 export const SET_ABOUT_DATA = "SET_ABOUT_DATA";
 export const SET_PARTNERS_DATA = "SET_PARTNERS_DATA";
 export const SET_CONTACTS = "SET_CONTACTS";
+export const SET_FETCH_STATUS = "SET_FETCH_STATUS";
 
 const setData = (data) => {
 	return {
@@ -26,10 +27,10 @@ const setAboutData = (data) => {
 	};
 };
 
-const setEvents = (events) => {
+const setEvents = (array) => {
 	return {
 		type: SET_EVENTS,
-		payload: events,
+		payload: array,
 	};
 };
 
@@ -46,6 +47,12 @@ const setContacts = (bool) => {
 		payload: bool,
 	};
 };
+const setFetchStatus = (bool) => {
+	return {
+		type: SET_FETCH_STATUS,
+		payload: bool,
+	};
+};
 
 export {
 	setData,
@@ -54,4 +61,5 @@ export {
 	setEvents,
 	setPartnersData,
 	setContacts,
+	setFetchStatus,
 };

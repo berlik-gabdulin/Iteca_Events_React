@@ -1,6 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setHeadTitle } from "../store/action";
+import { useSelector } from "react-redux";
 
 export const AboutUs = () => {
 	const { text_about } = useSelector(({ about: { text_about } }) => ({

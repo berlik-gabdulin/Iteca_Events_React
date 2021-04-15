@@ -1,80 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { EventCard } from "../components/eventCard";
-import { setEvents } from "../store/action";
+import { setEvents, setFetchStatus } from "../store/action";
 
 export const Home = () => {
-	const { apiList } = useSelector(({ homeData: { api_list: apiList } }) => ({
-		apiList,
-	}));
-
-	console.log(apiList);
-
-	const eventsArray = [];
-
-	apiList.map((apiItem) => {
-		const title = apiItem.title_api,
-			url = apiItem.api_url,
-			apiKey = apiItem.apiKey;
-		console.log(title, " ", url, " ", apiKey);
-	});
-
-	// const [events, setEvents] = useState([]);
-	// const getEvents = async (data) => {
-	// 	console.log("data.acf.api_list", data.acf.api_list);
-	// 	const api = data.acf.api_list[0];
-	// 	await fetch(api.api_url, {
-	// 		method: "POST",
-	// 		body: JSON.stringify({
-	// 			apiKey: api.apiKey,
-	// 			// lang: "ru",
-	// 			lang: api.lang,
-	// 			projectID: 0,
-	// 		}),
-	// 	})
-	// 		.then((res) => {
-	// 			const apiData = res.json();
-	// 			console.log("apiData", apiData);
-	// 			return apiData;
-	// 		})
-	// 		.then((events) => {
-	// 			events.confList.forEach((item) => {
-	// 				let beginDate = new Date(item.beginDate.split(" ")[0]),
-	// 					endDate = new Date(item.endDate);
-
-	// 				// console.log(beginDate);
-
-	// 				if (
-	// 					beginDate.toLocaleString("en", { month: "long" }) ==
-	// 					endDate.toLocaleString("en", { month: "long" })
-	// 				) {
-	// 					item.textDate = `${beginDate.toLocaleString("en", {
-	// 						day: "numeric",
-	// 					})} - ${endDate.toLocaleString("en", {
-	// 						day: "numeric",
-	// 					})} ${endDate.toLocaleString("en", {
-	// 						month: "long",
-	// 					})} ${endDate.toLocaleString("en", { year: "numeric" })}`;
-	// 				} else {
-	// 					item.textDate = `${beginDate.toLocaleString("en", {
-	// 						day: "numeric",
-	// 					})} ${beginDate.toLocaleString("en", {
-	// 						month: "long",
-	// 					})} - ${endDate.toLocaleString("en", {
-	// 						day: "numeric",
-	// 					})} ${endDate.toLocaleString("en", {
-	// 						month: "long",
-	// 					})} ${endDate.toLocaleString("en", { year: "numeric" })}`;
-	// 				}
-	// 			});
-
-	// 			return events.confList;
-	// 		});
-	// };
-	// console.log(getEvents());
-
-	// useEffect(() => getEvents(), []);
-
 	return (
 		<div>
 			<section className="search search">

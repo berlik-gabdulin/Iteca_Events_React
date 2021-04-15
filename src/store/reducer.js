@@ -5,6 +5,7 @@ import {
 	SET_ABOUT_DATA,
 	SET_PARTNERS_DATA,
 	SET_CONTACTS,
+	SET_FETCH_STATUS,
 } from "./action";
 
 const initialState = {
@@ -12,13 +13,7 @@ const initialState = {
 	homeData: {
 		title: "",
 		subtitle: "",
-		api_list: [
-			{
-				title_api: "",
-				api_url: "",
-				apiKey: "",
-			},
-		],
+		isFetched: false,
 	},
 	about: {
 		page_title: "",
@@ -56,6 +51,7 @@ const initialState = {
 			industry: "",
 		},
 	],
+	dataFetched: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -89,6 +85,11 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				contacts: action.payload,
+			};
+		case SET_FETCH_STATUS:
+			return {
+				...state,
+				dataFetched: action.payload,
 			};
 		default:
 			return state;

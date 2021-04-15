@@ -26,6 +26,8 @@ export const HeaderPage = () => {
 
 	const { pathname } = useLocation();
 
+	console.log("Header ReRender");
+
 	const getTitle = () => {
 		switch (pathname) {
 			case "/contacts":
