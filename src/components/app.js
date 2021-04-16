@@ -14,12 +14,10 @@ import { useSelector } from "react-redux";
 
 export const App = () => {
 	const dataFetched = useSelector((store) => store.dataFetched);
-	DataService();
-
-	console.log(dataFetched);
 	if (!dataFetched) {
-		EventsService();
+		console.log(EventsService());
 	}
+	DataService();
 
 	return (
 		<>

@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { EventCard } from "../components/eventCard";
-import { setEvents, setFetchStatus } from "../store/action";
+import { Loader } from "../components/loader";
 
 export const Home = () => {
+	const events = useSelector(({ events }) => events);
+
+	console.log(events);
+
 	return (
 		<div>
 			<section className="search search">
@@ -16,7 +19,7 @@ export const Home = () => {
 								placeholder="Event title, industry, country, city, month"
 							/>
 						</div>
-						<div className="search-form__item">
+						{/* <div className="search-form__item">
 							<p className="search-form__text">Search by industry</p>
 							<select
 								className="search-form__select"
@@ -30,7 +33,7 @@ export const Home = () => {
 								<option value="5">Food & Hospitality</option>
 								<option value="6">Defence & Security</option>
 							</select>
-						</div>
+						</div> */}
 						<div className="search-form__item">
 							<p className="search-form__text">Search by location</p>
 							<select
@@ -46,11 +49,13 @@ export const Home = () => {
 						</div>
 					</div>
 					<div className="cards">
-						{/* {events
-							? events.map((item) => {
-									return <EventCard event={item} key={item.projectID} />;
-							  })
-							: null} */}
+						{events ? (
+							events.map((item) => {
+								return <EventCard event={item} key={item.projectID} />;
+							})
+						) : (
+							<Loader />
+						)}
 					</div>
 				</div>
 			</section>

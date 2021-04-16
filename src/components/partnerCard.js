@@ -4,6 +4,8 @@ export const Partner = ({ data }) => {
 	return data.map((partner, index) => {
 		const description = partner.description.split("<br />");
 
+		console.log(partner);
+
 		return (
 			<div className="group-item item" key={index}>
 				<div className="item-card">

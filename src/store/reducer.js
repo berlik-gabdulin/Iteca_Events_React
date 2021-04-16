@@ -41,15 +41,16 @@ const initialState = {
 		page_img: false,
 	},
 	events: [
-		{
-			image_profile: "",
-			project: "",
-			description: "",
-			textDate: "",
-			beginDate: "",
-			location: "",
-			industry: "",
-		},
+		// {
+		// 	projectID: 0,
+		// 	image_profile: "",
+		// 	project: "",
+		// 	description: "",
+		// 	textDate: "",
+		// 	beginDate: "",
+		// 	location: "",
+		// 	industry: "",
+		// },
 	],
 	dataFetched: false,
 };

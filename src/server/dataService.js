@@ -26,10 +26,10 @@ export const DataService = () => {
 				page_title: partnersData.page_title,
 				partners_info: partnersData.partners_info.map((item) => {
 					return {
-						partners_name: item.page_title,
+						partners_name: item.partners_name,
 						logo_url: item.logo.url,
 						description: item.description,
-						website_link: item.wwebsite_link,
+						website_link: item.website_link,
 						photo_url: item.photo.url,
 						partner_type: item.partner_type.value,
 					};
