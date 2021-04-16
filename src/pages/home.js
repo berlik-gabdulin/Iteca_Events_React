@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 import { EventCard } from "../components/eventCard";
 import { Loader } from "../components/loader";
 
@@ -54,7 +55,9 @@ export const Home = () => {
 								return <EventCard event={item} key={item.projectID} />;
 							})
 						) : (
-							<Loader />
+							<CardsWrapper>
+								<Loader />
+							</CardsWrapper>
 						)}
 					</div>
 				</div>
@@ -64,3 +67,9 @@ export const Home = () => {
 };
 
 export default Home;
+
+const CardsWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;

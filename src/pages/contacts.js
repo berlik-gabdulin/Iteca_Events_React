@@ -1,14 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setHeadTitle } from "../store/action";
 import { useFormik } from "formik";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import styled from "styled-components";
 import axios from "axios";
+import { Loader } from "../components/loader";
 
 export const Contacts = () => {
+	const [success, setSuccess] = useState(false);
+	const [status, setStatus] = useState(false);
+	const [loader, setLoader] = useState(false);
 	// const dispatch = useDispatch();
 	const data = useSelector((state) => {
 		return state.contacts;
 	});
+
+	const showSuccess = () => {
+		setSuccess(true);
+		setLoader(false);
+		setTimeout(() => {
+			setStatus(false);
+			setSuccess(false);
+		}, 2000);
+	};
 
 	const formik = useFormik({
 		initialValues: {
@@ -18,6 +32,9 @@ export const Contacts = () => {
 			message: "",
 		},
 		onSubmit: (values) => {
+			setStatus(true);
+			setLoader(true);
+
 			const formData = new FormData();
 
 			formData.append("fullName", values.fullName);
@@ -33,7 +50,10 @@ export const Contacts = () => {
 						headers: { "Content-Type": "multipart/form-data" },
 					}
 				)
-				.then((res) => console.log(res));
+				.then((res) => {
+					console.log(res);
+					showSuccess();
+				});
 		},
 	});
 
@@ -77,7 +97,7 @@ export const Contacts = () => {
 						) : null}
 					</div>
 					<div className="col-50">
-						<div className="map">
+						<Map>
 							{data.map_link !== "" ? (
 								<iframe
 									src={data.map_link}
@@ -85,7 +105,7 @@ export const Contacts = () => {
 									title="Location Map"
 								></iframe>
 							) : null}
-						</div>
+						</Map>
 						<form className="form" onSubmit={formik.handleSubmit}>
 							<div className="input-group">
 								<label htmlFor="fullName">Name</label>
@@ -134,6 +154,16 @@ export const Contacts = () => {
 							<button className="form-button" type="submit">
 								Send
 							</button>
+							{status ? (
+								<Success>
+									{loader ? <Loader /> : null}
+									{success ? (
+										<SuccessMessage>
+											Your message has been sent successfully.
+										</SuccessMessage>
+									) : null}
+								</Success>
+							) : null}
 						</form>
 					</div>
 				</div>
@@ -141,3 +171,38 @@ export const Contacts = () => {
 		</>
 	);
 };
+
+const Success = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.7);
+`;
+
+const SuccessMessage = styled.h4`
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 18px;
+`;
+
+const Map = styled.div`
+	position: relative;
+	padding-top: 60%;
+	display: flex;
+	filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.4));
+	border-radius: 10px;
+	overflow: hidden;
+	height: 0;
+	iframe {
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+`;
