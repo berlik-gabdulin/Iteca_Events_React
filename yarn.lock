@@ -1546,6 +1546,11 @@
     ejs "^2.6.1"
     magic-string "^0.25.0"
 
+"@svg-maps/world@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@svg-maps/world/-/world-1.0.1.tgz#12d9cc263a1e3c25778c768687368fb6165a42d9"
+  integrity sha512-Mawh/jEYBBHnug9S17PyePLYKJ+Xd0Bbh96mCePebpbvcbJu5YKpfKhpyMeLFmmdWPrSFxl0f0MTsJfXU0gSaQ==
+
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-5.4.0.tgz#81ef61947bb268eb9d50523446f9c638fb355906"
@@ -9065,6 +9070,11 @@ react-fast-compare@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
+react-id-generator@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-id-generator/-/react-id-generator-3.0.1.tgz#30ec683954b3c0a5aa0732c4b98ed0f88fd85d00"
+  integrity sha512-YxorMaYxB8ItXA3Cuadcl/8ZaquU9Tzrrr5ogFL8tNqevF96cmCtx3LZLXYqBEj3BxoV9aBIK5yJjIuX/XHQ1A==
+
 react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -9186,6 +9196,13 @@ react-scripts@4.0.3:
     workbox-webpack-plugin "5.1.4"
   optionalDependencies:
     fsevents "^2.1.3"
+
+react-svg-map@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-svg-map/-/react-svg-map-2.2.0.tgz#ecdeb8898e6e34953c83afbf7433a621925a8f0b"
+  integrity sha512-slZTt4ffXgOb3ND/WEHOc0ojX5lBEv9FKbTU3tWnTLZPQ9L0e686SBqgVxmsuTD+o52Aor87InMzAzDRTQedpA==
+  dependencies:
+    prop-types "^15.7.2"
 
 react@^17.0.2:
   version "17.0.2"

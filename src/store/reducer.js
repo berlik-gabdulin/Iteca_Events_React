@@ -1,10 +1,13 @@
 import {
 	SET_DATA,
-	SET_EVENTS,
+	SET_EVENTS_ARR,
+	SET_SORTED_EVENTS,
 	SET_HOME_DATA,
 	SET_ABOUT_DATA,
+	SET_EVENTS_DATA,
 	SET_PARTNERS_DATA,
 	SET_CONTACTS,
+	SET_NETWORK_DATA,
 	SET_FETCH_STATUS,
 } from "./action";
 
@@ -18,6 +21,9 @@ const initialState = {
 	about: {
 		page_title: "",
 		text_about: [""],
+	},
+	events: {
+		page_title: "",
 	},
 	partners: {
 		page_title: "",
@@ -40,18 +46,11 @@ const initialState = {
 		map_link: "",
 		page_img: false,
 	},
-	events: [
-		// {
-		// 	projectID: 0,
-		// 	image_profile: "",
-		// 	project: "",
-		// 	description: "",
-		// 	textDate: "",
-		// 	beginDate: "",
-		// 	location: "",
-		// 	industry: "",
-		// },
-	],
+	network: {
+		page_title: "",
+	},
+	eventsArr: [],
+	sortedEventsArr: [],
 	dataFetched: false,
 };
 
@@ -72,10 +71,20 @@ export const reducer = (state = initialState, action) => {
 				...state,
 				about: action.payload,
 			};
-		case SET_EVENTS:
+		case SET_EVENTS_DATA:
 			return {
 				...state,
 				events: action.payload,
+			};
+		case SET_EVENTS_ARR:
+			return {
+				...state,
+				eventsArr: [...state.eventsArr, ...action.payload],
+			};
+		case SET_SORTED_EVENTS:
+			return {
+				...state,
+				sortedEvents: [...state.eventsArr, ...action.payload],
 			};
 		case SET_PARTNERS_DATA:
 			return {
@@ -86,6 +95,11 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				contacts: action.payload,
+			};
+		case SET_NETWORK_DATA:
+			return {
+				...state,
+				network: action.payload,
 			};
 		case SET_FETCH_STATUS:
 			return {

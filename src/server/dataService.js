@@ -4,6 +4,8 @@ import {
 	setContacts,
 	setHomeData,
 	setPartnersData,
+	setNetworkData,
+	setEventsData,
 } from "../store/action";
 import { axiosInstance } from "./axiosInstance";
 
@@ -20,6 +22,8 @@ export const DataService = () => {
 				page_title: aboutData.page_title,
 				text_about: aboutData.text_about.split("<br />"),
 			};
+
+			const eventsData = res.data.find((item) => item.id === 15).acf;
 
 			const partnersData = res.data.find((item) => item.id === 19).acf;
 			const partnersDispatchData = {
@@ -42,10 +46,14 @@ export const DataService = () => {
 				hours: contactsData.hours.split("<br />"),
 			};
 
+			const networkData = res.data.find((item) => item.id === 17).acf;
+
 			dispatch(setHomeData(homeData));
 			dispatch(setAboutData(aboutDispatchData));
+			dispatch(setEventsData(eventsData));
 			dispatch(setPartnersData(partnersDispatchData));
 			dispatch(setContacts(contactsData));
+			dispatch(setNetworkData(networkData));
 		});
 
 	getData();

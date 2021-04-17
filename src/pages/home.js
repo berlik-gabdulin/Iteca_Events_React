@@ -1,12 +1,28 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { EventCard } from "../components/eventCard";
 import { Loader } from "../components/loader";
+import { EventsService } from "../server/eventsService";
 
 export const Home = () => {
-	const events = useSelector(({ events }) => events);
+	const dispatch = useDispatch();
+	const { getEventsArrThunk } = EventsService();
+	const fetchStatus = useSelector(({ fetchStatus }) => fetchStatus);
+	const eventsArr = useSelector(({ eventsArr }) => eventsArr);
 
-	console.log(events);
+	useEffect(() => {
+		if (!fetchStatus) {
+			dispatch(getEventsArrThunk());
+		}
+	}, []);
+	const sortedEvents = [
+		...eventsArr.sort((a, b) => {
+			return b.beginDate - a.beginDate;
+		}),
+	];
+
+	console.log("homePage events ", eventsArr);
 
 	return (
 		<div>
@@ -50,9 +66,9 @@ export const Home = () => {
 						</div>
 					</div>
 					<div className="cards">
-						{events ? (
-							events.map((item) => {
-								return <EventCard event={item} key={item.projectID} />;
+						{sortedEvents.length ? (
+							sortedEvents.map((item) => {
+								return <EventCard event={item} key={item.id} />;
 							})
 						) : (
 							<CardsWrapper>

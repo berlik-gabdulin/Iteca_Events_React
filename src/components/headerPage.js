@@ -12,14 +12,14 @@ export const HeaderPage = () => {
 		({
 			about: { page_title: aboutTitle },
 			events: { page_title: eventsTitle },
-			// network: { page_title: networkTitle },
+			network: { page_title: networkTitle },
 			partners: { page_title: partnersTitle },
 			contacts: { page_title: contactsTitle },
 		}) => ({
 			aboutTitle,
 			contactsTitle,
 			eventsTitle,
-			// networkTitle,
+			networkTitle,
 			partnersTitle,
 		})
 	);

@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setHeadTitle } from "../store/action";
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { Fragment, useState } from "react";
 import styled from "styled-components";
@@ -10,7 +9,6 @@ export const Contacts = () => {
 	const [success, setSuccess] = useState(false);
 	const [status, setStatus] = useState(false);
 	const [loader, setLoader] = useState(false);
-	// const dispatch = useDispatch();
 	const data = useSelector((state) => {
 		return state.contacts;
 	});
@@ -51,18 +49,10 @@ export const Contacts = () => {
 					}
 				)
 				.then((res) => {
-					console.log(res);
 					showSuccess();
 				});
 		},
 	});
-
-	// dispatch(
-	// 	setHeadTitle({
-	// 		isHome: false,
-	// 		pageTitle: data.page_title,
-	// 	})
-	// );
 
 	const phoneLink = `tel:${data.phone}`;
 

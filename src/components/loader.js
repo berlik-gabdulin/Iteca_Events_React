@@ -1,7 +1,16 @@
+import styled from "styled-components";
+
 export const Loader = () => {
 	return (
-		<div className="loader">
-			<img src="../img/loader.svg" />
-		</div>
+		<LoaderWrapper>
+			<img src="../img/loader.svg" alt="" />
+		</LoaderWrapper>
 	);
 };
+
+const LoaderWrapper = styled.div`
+	max-width: 100px;
+	img {
+		width: 100%;
+	}
+`;

@@ -9,14 +9,8 @@ import { Events } from "../pages/events";
 import { OurGlobalNetwork } from "../pages/ourGlobalNetwork";
 import { OurPartners } from "../pages/ourPartners";
 import { DataService } from "../server/dataService";
-import { EventsService } from "../server/eventsService";
-import { useSelector } from "react-redux";
 
 export const App = () => {
-	const dataFetched = useSelector((store) => store.dataFetched);
-	if (!dataFetched) {
-		console.log(EventsService());
-	}
 	DataService();
 
 	return (

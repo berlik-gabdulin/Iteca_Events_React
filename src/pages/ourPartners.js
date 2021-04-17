@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Partner } from "../components/partnerCard";
-// import { setHeadTitle } from "../store/action";
 
 export const OurPartners = () => {
-	const dispatch = useDispatch();
 	const data = useSelector((state) => {
 		return state.partners;
 	});
