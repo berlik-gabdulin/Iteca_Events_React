@@ -43,6 +43,7 @@ const setEventsArr = (array) => {
 		payload: array,
 	};
 };
+
 const setSortedEvents = (array) => {
 	return {
 		type: SET_EVENTS_ARR,
@@ -53,12 +54,6 @@ const setSortedEvents = (array) => {
 const setPartnersData = (data) => {
 	return {
 		type: SET_PARTNERS_DATA,
-		payload: data,
-	};
-};
-const setEventData = (data) => {
-	return {
-		type: SET_EVENTS_DATA,
 		payload: data,
 	};
 };

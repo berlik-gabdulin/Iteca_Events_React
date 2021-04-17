@@ -90,6 +90,7 @@ export const EventsService = () => {
 			beginDate: event.beginDate,
 			endDate: event.endDate,
 			location: event.location,
+			country,
 			industry: "",
 		};
 		if (country !== "Azerbaijan") {

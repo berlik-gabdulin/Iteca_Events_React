@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { EventCard } from "../components/eventCard";
@@ -10,19 +10,51 @@ export const Home = () => {
 	const { getEventsArrThunk } = EventsService();
 	const fetchStatus = useSelector(({ fetchStatus }) => fetchStatus);
 	const eventsArr = useSelector(({ eventsArr }) => eventsArr);
+	const [search, setSearch] = useState("");
+	const [filter, setFilter] = useState("");
+	const [sortedEvents, setSortedEvents] = useState();
+	const [eventsToShow, setEventsToShow] = useState([]);
 
 	useEffect(() => {
 		if (!fetchStatus) {
 			dispatch(getEventsArrThunk());
 		}
 	}, []);
-	const sortedEvents = [
-		...eventsArr.sort((a, b) => {
-			return b.beginDate - a.beginDate;
-		}),
-	];
 
-	console.log("homePage events ", eventsArr);
+	useEffect(() => {
+		const arraySorted = [
+			...eventsArr.sort((a, b) => {
+				return new Date(a.beginDate) - new Date(b.beginDate);
+			}),
+		];
+
+		const filterEventsArray = (search, filter) => {
+			const searchLCase = search.toLowerCase();
+			const filterLCase = filter.toLowerCase();
+
+			const filteredEvents = [
+				...arraySorted.filter((event) => {
+					let title = event.project.toLowerCase(),
+						description = event.description.toLowerCase(),
+						location = event.location.toLowerCase(),
+						country = event.country.toLowerCase(),
+						textDate = event.textDate.toLowerCase();
+
+					return (
+						(title.indexOf(searchLCase) > -1 ||
+							description.indexOf(searchLCase) > -1 ||
+							location.indexOf(searchLCase) > -1 ||
+							textDate.indexOf(searchLCase) > -1) &&
+						country.indexOf(filterLCase) > -1
+					);
+				}),
+			];
+			console.log("filteredEvents", filteredEvents);
+			setEventsToShow(filteredEvents);
+		};
+		setSortedEvents(filterEventsArray(search, filter));
+		console.log(filter);
+	}, [eventsArr, search, filter]);
 
 	return (
 		<div>
@@ -34,6 +66,7 @@ export const Home = () => {
 								type="text"
 								id="searching"
 								placeholder="Event title, industry, country, city, month"
+								onChange={(event) => setSearch(event.target.value)}
 							/>
 						</div>
 						{/* <div className="search-form__item">
@@ -57,17 +90,19 @@ export const Home = () => {
 								className="search-form__select"
 								name="location"
 								id="location"
+								onChange={(event) => setFilter(event.target.value)}
 							>
-								<option value="1">Azerbaijan</option>
-								<option value="2">Kazakhstan</option>
-								<option value="3">England</option>
-								<option value="4">Uzbekistan</option>
+								<option value="">Choose location...</option>
+								<option value="Azerbaijan">Azerbaijan</option>
+								<option value="Kazakhstan">Kazakhstan</option>
+								<option value="England">England</option>
+								<option value="Uzbekistan">Uzbekistan</option>
 							</select>
 						</div>
 					</div>
 					<div className="cards">
-						{sortedEvents.length ? (
-							sortedEvents.map((item) => {
+						{eventsToShow !== [] ? (
+							eventsToShow.map((item) => {
 								return <EventCard event={item} key={item.id} />;
 							})
 						) : (

@@ -50,7 +50,7 @@ const initialState = {
 		page_title: "",
 	},
 	eventsArr: [],
-	sortedEventsArr: [],
+	sortedEvents: [],
 	dataFetched: false,
 };
 
