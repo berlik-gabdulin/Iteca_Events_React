@@ -36,6 +36,7 @@ export const DataService = () => {
 						website_link: item.website_link,
 						photo_url: item.photo.url,
 						partner_type: item.partner_type.value,
+						country: item.country,
 					};
 				}),
 			};

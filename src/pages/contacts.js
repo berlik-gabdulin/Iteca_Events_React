@@ -50,6 +50,7 @@ export const Contacts = () => {
 				)
 				.then((res) => {
 					showSuccess();
+					document.querySelector(".form").reset();
 				});
 		},
 	});

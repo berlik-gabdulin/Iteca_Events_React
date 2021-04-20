@@ -366,13 +366,19 @@ input {
   left: -1px;
   background: linear-gradient(90deg, rgba(226, 83, 6, 0.75) 0%, rgba(226, 83, 6, 0.15) 156.04%);
   -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px); }
+  backdrop-filter: blur(15px);
+  transition: 0.3s; }
+  .custom:hover {
+    box-shadow: -7px 0px 30px 3px #ff590077;
+    border: 1px solid #ff590011; }
   .custom .wrapper {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     margin: 0 auto; }
     .custom .wrapper a {
+      display: flex;
+      align-items: center;
       text-decoration: none;
       font-size: 18px;
       font-weight: bold;
@@ -588,17 +594,23 @@ input {
       letter-spacing: 0.1em;
       border-radius: 10px;
       border: 1px #0f7e86 solid;
-      padding: 9px 19px; }
+      padding: 9px 19px;
+      transition: 0.3s;
+      cursor: pointer; }
+      .search .cards-item a:hover {
+        box-shadow: 0 0px 30px 3px #0f7e8655; }
     .search .cards-item .wrapper {
       display: flex;
       height: 100%;
       flex-direction: column;
       padding: 0 30px 30px;
       margin-bottom: 20px; }
+    .search .cards-item .img {
+      overflow: hidden;
+      min-height: 195px; }
     .search .cards-item img {
       width: 100%;
       border-radius: 10px;
-      min-height: 195px;
       height: 100%;
       -o-object-fit: cover;
       object-fit: cover; }
@@ -757,7 +769,6 @@ input {
             top: 0; }
           .partners-group .group-item .item-card__title img {
             margin-right: 15px;
-            width: 100px;
             height: 60px; }
         .partners-group .group-item .item-card__text {
           margin: 0 auto;
@@ -788,7 +799,10 @@ input {
           text-decoration: none;
           color: #0f7e86;
           font-weight: 500;
-          font-size: 18px; }
+          font-size: 18px;
+          transition: 0.3s; }
+          .partners-group .group-item .item-card a:hover {
+            box-shadow: 0 0px 30px 3px #0f7e8655; }
 
 .contacts {
   background: url(../img/contacts-bg.jpg) no-repeat;
@@ -850,7 +864,11 @@ input {
         border-radius: 10px;
         color: #ffffff;
         margin: 20px 0 0 55px;
-        font-size: 18px; }
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s; }
+        .contacts-content .col-50 .form-button:hover {
+          box-shadow: 0 0px 30px 3px #0f7e8655; }
 
 .footer {
   background: #06474b;

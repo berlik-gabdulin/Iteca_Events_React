@@ -11,9 +11,12 @@ export const Home = () => {
 	const fetchStatus = useSelector(({ fetchStatus }) => fetchStatus);
 	const eventsArr = useSelector(({ eventsArr }) => eventsArr);
 	const [search, setSearch] = useState("");
-	const [filter, setFilter] = useState("");
-	const [sortedEvents, setSortedEvents] = useState();
-	const [eventsToShow, setEventsToShow] = useState([]);
+	const [filterCountry, setFilterCountry] = useState("");
+	const [filterIndustry, setFilterIndustry] = useState("");
+	const [eventsToShow, setEventsToShow] = useState([""]);
+	const [loaderEvents, setLoaderEvents] = useState(true);
+
+	// console.log(loaderEvents);
 
 	useEffect(() => {
 		if (!fetchStatus) {
@@ -28,9 +31,8 @@ export const Home = () => {
 			}),
 		];
 
-		const filterEventsArray = (search, filter) => {
+		const filterEventsArray = (search, filterCountry) => {
 			const searchLCase = search.toLowerCase();
-			const filterLCase = filter.toLowerCase();
 
 			const filteredEvents = [
 				...arraySorted.filter((event) => {
@@ -45,16 +47,18 @@ export const Home = () => {
 							description.indexOf(searchLCase) > -1 ||
 							location.indexOf(searchLCase) > -1 ||
 							textDate.indexOf(searchLCase) > -1) &&
-						country.indexOf(filterLCase) > -1
+						country.indexOf(filterCountry.toLowerCase()) > -1 &&
+						country.indexOf(filterIndustry.toLowerCase()) > -1
 					);
 				}),
 			];
-			console.log("filteredEvents", filteredEvents);
+
 			setEventsToShow(filteredEvents);
 		};
-		setSortedEvents(filterEventsArray(search, filter));
-		console.log(filter);
-	}, [eventsArr, search, filter]);
+		setLoaderEvents(false);
+		filterEventsArray(search, filterCountry);
+		console.log(filterCountry);
+	}, [eventsArr, search, filterCountry]);
 
 	return (
 		<div>
@@ -90,19 +94,19 @@ export const Home = () => {
 								className="search-form__select"
 								name="location"
 								id="location"
-								onChange={(event) => setFilter(event.target.value)}
+								onChange={(event) => setFilterCountry(event.target.value)}
 							>
 								<option value="">Choose location...</option>
 								<option value="Azerbaijan">Azerbaijan</option>
 								<option value="Kazakhstan">Kazakhstan</option>
-								<option value="England">England</option>
 								<option value="Uzbekistan">Uzbekistan</option>
 							</select>
 						</div>
 					</div>
 					<div className="cards">
-						{eventsToShow !== [] ? (
+						{!loaderEvents ? (
 							eventsToShow.map((item) => {
+								console.log(item);
 								return <EventCard event={item} key={item.id} />;
 							})
 						) : (
@@ -120,6 +124,7 @@ export const Home = () => {
 export default Home;
 
 const CardsWrapper = styled.div`
+	min-height: 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

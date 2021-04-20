@@ -92,6 +92,7 @@ export const EventsService = () => {
 			location: event.location,
 			country,
 			industry: "",
+			websiite: event.programme,
 		};
 		if (country !== "Azerbaijan") {
 			eventObj = {
@@ -103,7 +104,7 @@ export const EventsService = () => {
 		} else {
 			eventObj = {
 				...eventObj,
-				image_profile: event.logo,
+				image_profile: event.image_profile,
 				project: event.short_title,
 				description: event.title,
 			};

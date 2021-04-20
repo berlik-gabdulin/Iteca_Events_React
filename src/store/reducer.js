@@ -35,6 +35,7 @@ const initialState = {
 				website_link: "",
 				photo_url: "",
 				partner_type: { value: "coOrganizer" },
+				country: "",
 			},
 		],
 	},
@@ -51,6 +52,8 @@ const initialState = {
 	},
 	eventsArr: [],
 	sortedEvents: [],
+	countries: [],
+	industries: [],
 	dataFetched: false,
 };
 
