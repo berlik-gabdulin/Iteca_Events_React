@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { EventCard } from "../components/eventCard";
 import { Loader } from "../components/loader";
 import { EventsService } from "../server/eventsService";
+import { setSortedEvents } from "../store/action";
 
 export const Home = () => {
 	const dispatch = useDispatch();
@@ -79,6 +80,7 @@ export const Home = () => {
 								className="search-form__select"
 								name="industry"
 								id="industry"
+								onChange={(event) => setFilterIndustry(event.target.value)}
 							>
 								<option value="1">Oil & Gas</option>
 								<option value="2">Beauty</option>
@@ -106,7 +108,6 @@ export const Home = () => {
 					<div className="cards">
 						{!loaderEvents ? (
 							eventsToShow.map((item) => {
-								console.log(item);
 								return <EventCard event={item} key={item.id} />;
 							})
 						) : (

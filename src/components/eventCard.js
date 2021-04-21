@@ -12,7 +12,7 @@ export const EventCard = ({ event }) => {
 				<p className="cards-item__date">{event.textDate}</p>
 				<p className="cards-item__address">{event.location}</p>
 				<div>
-					<a href={event.website} target="_blank">
+					<a href={event.website} target="_blank" rel="noreferrer">
 						Go to website
 					</a>
 				</div>

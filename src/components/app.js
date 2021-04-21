@@ -8,6 +8,7 @@ import { Contacts } from "../pages/contacts";
 import { Events } from "../pages/events";
 import { OurGlobalNetwork } from "../pages/ourGlobalNetwork";
 import { OurPartners } from "../pages/ourPartners";
+import { EventByIndustry } from "../pages/eventByIndustry";
 import { DataService } from "../server/dataService";
 
 export const App = () => {
@@ -20,7 +21,8 @@ export const App = () => {
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/about-us" component={AboutUs} />
-					<Route path="/events" component={Events} />
+					<Route exact path="/events" component={Events} />
+					<Route path="/events/:industry/:title" component={EventByIndustry} />
 					<Route path="/our-global-network" component={OurGlobalNetwork} />
 					<Route path="/our-partners" component={OurPartners} />
 					<Route path="/contacts" component={Contacts} />

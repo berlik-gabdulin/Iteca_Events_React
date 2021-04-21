@@ -367,10 +367,13 @@ input {
   background: linear-gradient(90deg, rgba(226, 83, 6, 0.75) 0%, rgba(226, 83, 6, 0.15) 156.04%);
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
-  transition: 0.3s; }
+  transition: 0.3s;
+  z-index: 100; }
   .custom:hover {
     box-shadow: -7px 0px 30px 3px #ff590077;
     border: 1px solid #ff590011; }
+    .custom:hover a {
+      text-shadow: 0px 0px 3px #fbff00; }
   .custom .wrapper {
     position: relative;
     display: flex;
@@ -740,7 +743,8 @@ input {
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         height: 619px;
-        border-radius: 10px; }
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.3); }
         .partners-group .group-item .item-card__title {
           position: relative;
           font-family: "Gilroy", sans-serif;

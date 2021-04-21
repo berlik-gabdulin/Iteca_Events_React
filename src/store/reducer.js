@@ -24,6 +24,7 @@ const initialState = {
 	},
 	events: {
 		page_title: "",
+		industry: [],
 	},
 	partners: {
 		page_title: "",

@@ -26,8 +26,6 @@ export const HeaderPage = () => {
 
 	const { pathname } = useLocation();
 
-	console.log("Header ReRender");
-
 	const getTitle = () => {
 		switch (pathname) {
 			case "/contacts":
@@ -48,7 +46,7 @@ export const HeaderPage = () => {
 	return (
 		<section className="events">
 			<div className="container">
-				<h3 className="section__title">{getTitle()}</h3>
+				{getTitle() ? <h3 className="section__title">{getTitle()}</h3> : null}
 			</div>
 		</section>
 	);

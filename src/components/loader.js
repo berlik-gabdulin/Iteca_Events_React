@@ -9,8 +9,11 @@ export const Loader = () => {
 };
 
 const LoaderWrapper = styled.div`
-	max-width: 100px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
 	img {
 		width: 100%;
+		max-width: 100px;
 	}
 `;
