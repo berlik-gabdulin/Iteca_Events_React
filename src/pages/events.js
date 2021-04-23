@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { Loader } from "../components/loader";
 
 export const Events = () => {

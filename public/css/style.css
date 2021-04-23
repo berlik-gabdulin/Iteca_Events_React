@@ -19,6 +19,9 @@ html {
 body {
   margin: 0; }
 
+* {
+  box-sizing: border-box; }
+
 /**
    * Render the `main` element consistently in IE.
    */
@@ -362,8 +365,9 @@ input {
   height: 74px;
   border-radius: 0 10px 10px 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: none;
   bottom: 30px;
-  left: -1px;
+  left: 0;
   background: linear-gradient(90deg, rgba(226, 83, 6, 0.75) 0%, rgba(226, 83, 6, 0.15) 156.04%);
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
@@ -469,7 +473,43 @@ input {
     justify-content: space-between; }
 
 .nav-toggle {
-  display: none; }
+  display: block;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 20px;
+  cursor: pointer;
+  z-index: 100;
+  transform: translateY(-50%); }
+  .nav-toggle span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #433936;
+    transition: 0.3s; }
+    .nav-toggle span.top {
+      top: 2px; }
+    .nav-toggle span.center {
+      top: 9px; }
+    .nav-toggle span.bottom {
+      bottom: 2px; }
+  .nav-toggle:hover .top {
+    top: 0; }
+  .nav-toggle:hover .bottom {
+    bottom: 0; }
+  .nav-toggle.active span {
+    background: #fff; }
+  .nav-toggle.active .top {
+    top: 10px;
+    transform: rotate(315deg); }
+  .nav-toggle.active .center {
+    opacity: 0;
+    transform: rotate(-150deg); }
+  .nav-toggle.active .bottom {
+    bottom: 8px;
+    transform: rotate(-135deg); }
 
 .hero {
   background: url(../img/hero__bg.jpg) no-repeat;
@@ -546,14 +586,13 @@ input {
 .search .cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: stretch;
   margin-top: 146px; }
   .search .cards-item {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-bottom: 100px;
     width: 100%;
     max-width: 391px;
     min-height: 100%;
@@ -561,6 +600,12 @@ input {
     background: #ffffff;
     font-family: "Gilroy", sans-serif;
     border-radius: 10px; }
+    .search .cards-item__wrapper {
+      width: calc(100% / 3);
+      display: flex;
+      justify-content: center;
+      padding: 0 10px 100px;
+      box-sizing: border-box; }
     .search .cards-item__title {
       font-size: 24px;
       font-weight: bold;
@@ -601,7 +646,7 @@ input {
       transition: 0.3s;
       cursor: pointer; }
       .search .cards-item a:hover {
-        box-shadow: 0 0px 30px 3px #0f7e8655; }
+        box-shadow: 0 0px 30px -10px #0f7e8699; }
     .search .cards-item .wrapper {
       display: flex;
       height: 100%;
@@ -609,14 +654,20 @@ input {
       padding: 0 30px 30px;
       margin-bottom: 20px; }
     .search .cards-item .img {
-      overflow: hidden;
-      min-height: 195px; }
-    .search .cards-item img {
-      width: 100%;
-      border-radius: 10px;
-      height: 100%;
-      -o-object-fit: cover;
-      object-fit: cover; }
+      position: relative;
+      height: 0;
+      padding-top: 50%;
+      overflow: hidden; }
+      .search .cards-item .img img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        border-radius: 10px;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover; }
 
 .about {
   background: url(../img/about-bg.jpg) no-repeat;
@@ -656,6 +707,7 @@ input {
         width: 100%;
         z-index: 99;
         font-size: 38px;
+        padding: 70px;
         font-weight: 500;
         line-height: 140%; }
         .events-cards .cards-item__text::before {
@@ -785,7 +837,8 @@ input {
           letter-spacing: 0.1em;
           font-weight: 500;
           font-size: 16px;
-          line-height: 140%; }
+          line-height: 140%;
+          box-sizing: border-box; }
         .partners-group .group-item .item-card a {
           position: absolute;
           display: flex;
@@ -958,7 +1011,8 @@ input {
   .about {
     min-height: 30vh; }
   .events {
-    min-height: 30vh; }
+    min-height: 25vh;
+    box-sizing: content-box; }
     .events-cards .cards-item {
       max-width: 554px;
       height: 403px; }
@@ -1003,14 +1057,11 @@ input {
         height: 35px; }
       .contacts-content .col-50 .form .input-group textarea {
         height: 100px; }
-  .events-cards .cards-item {
-    height: 333px;
-    max-width: 484px; }
-    .events-cards .cards-item__text {
-      font-size: 30px; }
-      .events-cards .cards-item__text::before {
-        min-height: 207px;
-        max-width: 376px; } }
+  .events-cards .cards-item__text {
+    font-size: 30px; }
+    .events-cards .cards-item__text::before {
+      min-height: 207px;
+      max-width: 376px; } }
 
 @media only screen and (max-width: 1024px) {
   .section__title {
@@ -1019,13 +1070,7 @@ input {
     min-height: 90px;
     height: 100%; }
   .header-nav {
-    height: 0;
-    width: 100%;
-    overflow: hidden;
-    transition: 0.3s;
-    box-sizing: border-box; }
-    .header-nav--visible {
-      height: 233px; }
+    display: none; }
     .header-nav .navbar {
       flex-direction: column; }
       .header-nav .navbar__item {
@@ -1037,12 +1082,6 @@ input {
     flex-wrap: wrap; }
   .header .navbar li {
     font-size: 16px; }
-  .nav-toggle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px; }
   .hero__title {
     font-size: 42px; }
   .hero__subtitle {
@@ -1057,7 +1096,9 @@ input {
     flex-wrap: wrap;
     justify-content: center; }
   .contacts-content .col-50 .text-group {
-    margin-bottom: 35px; } }
+    margin-bottom: 35px; }
+  .search .cards-item__wrapper {
+    width: 50%; } }
 
 @media only screen and (max-width: 991px) {
   section {
@@ -1093,13 +1134,14 @@ input {
   .search .cards {
     margin-top: 100px; }
     .search .cards-item {
-      max-width: 360px;
-      margin-bottom: 60px; }
+      max-width: 360px; }
       .search .cards-item__title {
         font-size: 20px; }
       .search .cards-item__text {
         font-size: 16px;
-        min-height: 80px; }
+        min-height: auto; }
+      .search .cards-item__wrapper {
+        padding-bottom: 30px; }
       .search .cards-item img {
         min-height: 165px; }
       .search .cards-item a {
@@ -1181,17 +1223,23 @@ input {
       .search .cards-item__title {
         font-size: 18px;
         margin-top: 23px; }
+      .search .cards-item__wrapper {
+        width: 100%; }
   .about-content__text {
     font-size: 14px; }
   .partners-group .group__title {
     font-size: 20px; }
     .partners-group .group__title::before {
-      right: 40vw; }
+      left: -15px;
+      right: 10vw;
+      width: 90%; }
   .partners-group .group-item .item-card {
     height: 460px;
     max-width: 420px; }
     .partners-group .group-item .item-card__title {
-      font-size: 18px; }
+      font-size: 18px;
+      width: 95%;
+      box-sizing: s; }
       .partners-group .group-item .item-card__title::before {
         min-height: 60px;
         max-width: 320px; }
@@ -1266,8 +1314,6 @@ input {
       font-size: 14px; }
   .search .cards-item__address {
     margin-bottom: 0; }
-  .search .cards-item a {
-    margin-top: 30px; }
   .about-content__text:last-child {
     margin-bottom: 60px; }
   .events-cards .cards-item {
@@ -1275,7 +1321,8 @@ input {
     max-width: 310px;
     margin-bottom: 50px; }
     .events-cards .cards-item__text {
-      font-size: 22px; }
+      font-size: 22px;
+      padding: 30px; }
       .events-cards .cards-item__text::before {
         max-width: 265px; }
   .partners-group .group-item .item-card {

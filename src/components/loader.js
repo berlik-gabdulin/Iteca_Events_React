@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Loader = () => {
 	return (
 		<LoaderWrapper>
-			<img src="../img/loader.svg" alt="" />
+			<img src="/img/loader.svg" alt="" />
 		</LoaderWrapper>
 	);
 };

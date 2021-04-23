@@ -3,6 +3,7 @@ import { HeaderPage } from "./headerPage";
 import { HeaderHome } from "./headerHome";
 import { Nav } from "./nav";
 import { useLocation } from "react-router";
+import { MobileMenu } from "./navMobile";
 
 export const Header = () => {
 	const { pathname } = useLocation();
@@ -13,15 +14,15 @@ export const Header = () => {
 				<div className="container">
 					<div className="header-logo">
 						<a href="/">
-							<img src="../img/main-logo.png" alt="Logo" />
+							<img src="/img/main-logo.png" alt="Logo" />
 						</a>
 					</div>
-					<div className="nav-toggle">X</div>
 					<Nav />
 				</div>
 			</div>
 
 			{pathname === "/" ? <HeaderHome /> : <HeaderPage />}
+			<MobileMenu />
 		</>
 	);
 };

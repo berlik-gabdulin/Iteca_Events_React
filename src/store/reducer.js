@@ -8,6 +8,7 @@ import {
 	SET_PARTNERS_DATA,
 	SET_CONTACTS,
 	SET_NETWORK_DATA,
+	SET_INDUSTRY_LIST,
 	SET_FETCH_STATUS,
 } from "./action";
 
@@ -54,7 +55,7 @@ const initialState = {
 	eventsArr: [],
 	sortedEvents: [],
 	countries: [],
-	industries: [],
+	industry: [],
 	dataFetched: false,
 };
 
@@ -104,6 +105,11 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				network: action.payload,
+			};
+		case SET_NETWORK_DATA:
+			return {
+				...state,
+				industry: action.payload,
 			};
 		case SET_FETCH_STATUS:
 			return {

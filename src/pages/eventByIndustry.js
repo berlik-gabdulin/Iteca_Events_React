@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import { EventCard } from "../components/eventCard";
+import { Loader } from "../components/loader";
 import { EventsService } from "../server/eventsService";
 
 export const EventByIndustry = () => {
@@ -11,24 +12,32 @@ export const EventByIndustry = () => {
 	const fetchStatus = useSelector(({ fetchStatus }) => fetchStatus);
 	const { industry, title } = useParams();
 	const events = useSelector((store) => store.eventsArr);
+	const [eventsToShow, setEventsToShow] = useState([]);
 
-	console.log(title);
 	useEffect(() => {
 		if (!fetchStatus) {
 			dispatch(getEventsArrThunk());
 		}
 	}, []);
 
+	useEffect(() => {
+		const buffer = events.filter((event) => event.industry === industry);
+		setEventsToShow(buffer);
+		console.log(eventsToShow);
+	}, [events]);
+
 	return (
-		<div class="container">
+		<div className="container">
 			<Title>{title}</Title>
 			<div className="search">
 				<div className="cards">
-					{events.map((event, index) => {
-						return event.industry === industry ? (
-							<EventCard event={event} key={index} />
-						) : null;
-					})}
+					{eventsToShow.length ? (
+						eventsToShow.map((event, index) => {
+							return <EventCard event={event} key={index} />;
+						})
+					) : (
+						<Loader />
+					)}
 				</div>
 			</div>
 		</div>
@@ -39,4 +48,7 @@ const Title = styled.h2`
 	font-size: 32px;
 	text-align: center;
 	margin-bottom: -100px;
+	@media (max-width: 768px) {
+		margin-bottom: -50px;
+	}
 `;

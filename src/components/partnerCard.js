@@ -81,6 +81,17 @@ const ItemCardTitle = styled.div`
 	align-items: center;
 	padding-left: 25px;
 	margin-top: 40px;
+	width: 95%;
+	box-sizing: border-box;
+	@media (max-width: 1024px) {
+		font-size: 26px;
+	}
+	@media (max-width: 991px) {
+		font-size: 24px;
+	}
+	@media (max-width: 768px) {
+		font-size: 18px;
+	}
 	&::before {
 		position: absolute;
 		content: "";
@@ -100,12 +111,18 @@ const ItemCardTitle = styled.div`
 		z-index: -1;
 		left: 0;
 		top: 0;
+		@media (max-width: 768px) {
+			min-height: 60px;
+		}
 	}
 
 	img {
 		margin-right: 15px;
 		max-height: 60px;
 		max-width: 100px;
+		@media (max-width: 991px) {
+			max-width: 70px;
+		}
 	}
 `;
 
@@ -121,6 +138,10 @@ const ItemCardText = styled.div`
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 140%;
+	box-sizing: border-box;
+	@media (max-width: 991px) {
+		font-size: 14px;
+	}
 `;
 
 const ItemCardLink = styled.a`
@@ -152,6 +173,9 @@ const ItemImg = styled.div`
 	filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.4));
 	z-index: -1;
 	width: 100%;
+	@media (max-width: 991px) {
+		display: none;
+	}
 	img {
 		max-width: 605px;
 		width: 100%;

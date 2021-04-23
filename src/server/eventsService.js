@@ -92,7 +92,7 @@ export const EventsService = () => {
 			location: event.location,
 			country,
 			industry: event.industry,
-			websiite: event.programme,
+			website: event.programme,
 		};
 		if (country !== "Azerbaijan") {
 			eventObj = {
