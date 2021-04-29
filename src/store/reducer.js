@@ -18,14 +18,17 @@ const initialState = {
 		title: "",
 		subtitle: "",
 		isFetched: false,
+		// page_img: false,
 	},
 	about: {
 		page_title: "",
 		text_about: [""],
+		// page_img: false,
 	},
 	events: {
 		page_title: "",
 		industry: [],
+		// page_img: false,
 	},
 	partners: {
 		page_title: "",
@@ -40,6 +43,7 @@ const initialState = {
 				country: "",
 			},
 		],
+		// page_img: false,
 	},
 	contacts: {
 		page_title: "",
@@ -47,10 +51,11 @@ const initialState = {
 		address: "",
 		hours: [""],
 		map_link: "",
-		page_img: false,
+		// page_img: false,
 	},
 	network: {
 		page_title: "",
+		// page_img: false,
 	},
 	eventsArr: [],
 	sortedEvents: [],

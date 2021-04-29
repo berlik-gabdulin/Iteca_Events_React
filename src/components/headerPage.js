@@ -1,26 +1,40 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
+import styled from "styled-components";
 
 export const HeaderPage = () => {
+	const [img, setImg] = useState(``);
+
 	const {
 		aboutTitle,
 		contactsTitle,
 		partnersTitle,
 		eventsTitle,
 		networkTitle,
+		aboutImg,
+		eventsImg,
+		networkImg,
+		partnersImg,
+		contactsImg,
 	} = useSelector(
 		({
-			about: { page_title: aboutTitle },
-			events: { page_title: eventsTitle },
-			network: { page_title: networkTitle },
-			partners: { page_title: partnersTitle },
-			contacts: { page_title: contactsTitle },
+			about: { page_title: aboutTitle, page_img: aboutImg },
+			events: { page_title: eventsTitle, page_img: eventsImg },
+			network: { page_title: networkTitle, page_img: networkImg },
+			partners: { page_title: partnersTitle, page_img: partnersImg },
+			contacts: { page_title: contactsTitle, page_img: contactsImg },
 		}) => ({
 			aboutTitle,
 			contactsTitle,
 			eventsTitle,
 			networkTitle,
 			partnersTitle,
+			aboutImg,
+			eventsImg,
+			networkImg,
+			partnersImg,
+			contactsImg,
 		})
 	);
 
@@ -29,25 +43,62 @@ export const HeaderPage = () => {
 	const getTitle = () => {
 		switch (pathname) {
 			case "/contacts":
-				return contactsTitle;
+				return { pageTitle: contactsTitle, pageImg: contactsImg };
 			case "/about-us":
-				return aboutTitle;
+				return { pageTitle: aboutTitle, pageImg: aboutImg };
 			case "/events":
-				return eventsTitle;
+				return { pageTitle: eventsTitle, pageImg: eventsImg };
 			case "/our-global-network":
-				return networkTitle;
+				return { pageTitle: networkTitle, pageImg: networkImg };
 			case "/our-partners":
-				return partnersTitle;
+				return { pageTitle: partnersTitle, pageImg: partnersImg };
 			default:
 				return "";
 		}
 	};
 
+	console.log(getTitle());
+
+	useEffect(() => setImg(getTitle().pageImg), [getTitle()]);
+
 	return (
-		<section className="events">
+		<HeaderWrapper>
+			<HeaderBg img={img} />
+			<HeaderBgOverlay />
 			<div className="container">
-				{getTitle() ? <h3 className="section__title">{getTitle()}</h3> : null}
+				{getTitle() ? (
+					<h3 className="section__title">{getTitle().pageTitle}</h3>
+				) : null}
 			</div>
-		</section>
+		</HeaderWrapper>
 	);
 };
+
+const HeaderWrapper = styled.section`
+	position: relative;
+	min-height: 45vh;
+	z-index: -1;
+	overflow: hidden;
+`;
+
+const HeaderBg = styled.div`
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: url(${({ img }) => img}) no-repeat center center;
+	background-size: cover;
+	filter: blur(5px);
+	z-index: -2;
+`;
+
+const HeaderBgOverlay = styled.div`
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(15, 126, 134, 0.6);
+	z-index: -1;
+`;

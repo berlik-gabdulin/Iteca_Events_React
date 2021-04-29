@@ -21,6 +21,7 @@ export const DataService = () => {
 			const aboutDispatchData = {
 				page_title: aboutData.page_title,
 				text_about: aboutData.text_about.split("<br />"),
+				page_img: aboutData.page_img,
 			};
 
 			const eventsData = res.data.find((item) => item.id === 15).acf;
@@ -28,6 +29,7 @@ export const DataService = () => {
 			const partnersData = res.data.find((item) => item.id === 19).acf;
 			const partnersDispatchData = {
 				page_title: partnersData.page_title,
+				page_img: partnersData.page_img,
 				partners_info: partnersData.partners_info.map((item) => {
 					return {
 						partners_name: item.partners_name,
