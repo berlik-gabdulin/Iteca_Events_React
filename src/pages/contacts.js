@@ -29,7 +29,7 @@ export const Contacts = () => {
 			email: "",
 			message: "",
 		},
-		onSubmit: (values) => {
+		onSubmit: (values, { resetForm }) => {
 			setStatus(true);
 			setLoader(true);
 
@@ -42,7 +42,9 @@ export const Contacts = () => {
 
 			axios
 				.post(
-					"http://dev.ica-eurasia.com/wp-json/contact-form-7/v1/contact-forms/119/feedback",
+					"https://dev.ica-eurasia.com/wp-json/contact-form-7/v1/contact-forms/119/feedback",
+					// "https://wp.ica.events/wp-json/contact-form-7/v1/contact-forms/119/feedback",
+					// "https://wp.exhibitions-conferences.com/wp-json/contact-form-7/v1/contact-forms/119/feedback",
 					formData,
 					{
 						headers: { "Content-Type": "multipart/form-data" },
@@ -50,7 +52,7 @@ export const Contacts = () => {
 				)
 				.then((res) => {
 					showSuccess();
-					document.querySelector(".form").reset();
+					resetForm();
 				});
 		},
 	});

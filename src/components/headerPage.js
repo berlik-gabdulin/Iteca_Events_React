@@ -59,15 +59,17 @@ export const HeaderPage = () => {
 
 	console.log(getTitle());
 
-	useEffect(() => setImg(getTitle().pageImg), [getTitle()]);
+	// useEffect(() => setImg(getTitle().pageImg), [getTitle()]);
 
 	return (
 		<HeaderWrapper>
-			<HeaderBg img={img} />
+			<HeaderBg img={getTitle().pageImg ? getTitle().pageImg : eventsImg} />
 			<HeaderBgOverlay />
 			<div className="container">
-				{getTitle() ? (
-					<h3 className="section__title">{getTitle().pageTitle}</h3>
+				{getTitle().pageTitle !== "" ? (
+					<h3 className="section__title">
+						{getTitle().pageTitle ? getTitle().pageTitle : eventsTitle}
+					</h3>
 				) : null}
 			</div>
 		</HeaderWrapper>
@@ -77,7 +79,7 @@ export const HeaderPage = () => {
 const HeaderWrapper = styled.section`
 	position: relative;
 	min-height: 45vh;
-	z-index: -1;
+	z-index: 1;
 	overflow: hidden;
 `;
 
@@ -100,5 +102,6 @@ const HeaderBgOverlay = styled.div`
 	left: 0;
 	right: 0;
 	background-color: rgba(15, 126, 134, 0.6);
+	/* background-color: rgba(63, 35, 25, 0.6); */
 	z-index: -1;
 `;

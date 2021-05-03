@@ -19,8 +19,10 @@ export const EventsService = () => {
 			}),
 		})
 			.then((res) => res.json())
-			.then((json) => json.confList);
-		// console.log("fetchData ", fetchData);
+			.then((json) => json.confList)
+			.catch((e) => {
+				console.log(e);
+			});
 		return fetchData;
 	};
 
@@ -116,20 +118,16 @@ export const EventsService = () => {
 		try {
 			if (!dataFetched) {
 				const someRes = await axiosInstance.get(_baseUrl);
-				// console.log("someRes", someRes);
 				const apiList = someRes.data.find((item) => item.id === 2).acf.api_list;
-
-				// console.log("apiList", apiList);
 
 				await apiList.map(async ({ api_url, apiKey, country }) => {
 					const exhListRes = await exhListPost(api_url, apiKey);
-					// console.log("exhListRes", exhListRes);
-					const exhListArray = exhListRes.map((event) => {
-						const obj = getNewObj(event, country);
-						// console.log(obj);
-						return obj;
-					});
-					// console.log("exhListArray", exhListArray);
+					const exhListArray = exhListRes
+						? exhListRes.map((event) => {
+								const obj = getNewObj(event, country);
+								return obj;
+						  })
+						: [];
 					dispatch(setEventsArr(exhListArray));
 				});
 				dispatch(setFetchStatus(true));

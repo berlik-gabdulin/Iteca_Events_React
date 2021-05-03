@@ -48,7 +48,8 @@ const Title = styled.h2`
 	font-size: 32px;
 	text-align: center;
 	margin-bottom: -100px;
-	@media (max-width: 768px) {
+	@media (max-width: 991px) {
 		margin-bottom: -50px;
+		font-size: 24px;
 	}
 `;

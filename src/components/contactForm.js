@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const ContactForm = () => {
 	const sendForm = axios.post(
-		"http://dev.ica-eurasia.com/wp-json/contact-form-7/v1/contact-forms/119/feedback"
+		// "https://dev.ica-eurasia.com/wp-json/contact-form-7/v1/contact-forms/119/feedback"
+		// "https://wp.ica.events/wp-json/contact-form-7/v1/contact-forms/119/feedback"
+		"https://wp.exhibitions-conferences.com/wp-json/contact-form-7/v1/contact-forms/119/feedback"
 		// {
 		// 	body: {
 		// 		fullName,
