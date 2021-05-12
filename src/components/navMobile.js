@@ -7,7 +7,7 @@ export const MobileMenu = () => {
 
 	const getMobileNav = () => {
 		setMobileNav(!mobileNav);
-		console.log(mobileNav);
+		// console.log(mobileNav);
 	};
 	return (
 		<>

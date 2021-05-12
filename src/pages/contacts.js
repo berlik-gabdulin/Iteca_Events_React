@@ -13,6 +13,21 @@ export const Contacts = () => {
 		return state.contacts;
 	});
 
+	const host = window.location.hostname;
+
+	const formUrl = () => {
+		switch (host) {
+			case "ica-eurasia.com":
+				return `dev.${host}`;
+			case "ica.events":
+				return `wp.${host}`;
+			case "exhibitions-conferences.com":
+				return `wp.${host}`;
+			default:
+				return `olololo.${host}`;
+		}
+	};
+
 	const showSuccess = () => {
 		setSuccess(true);
 		setLoader(false);
@@ -42,9 +57,7 @@ export const Contacts = () => {
 
 			axios
 				.post(
-					"https://dev.ica-eurasia.com/wp-json/contact-form-7/v1/contact-forms/119/feedback",
-					// "https://wp.ica.events/wp-json/contact-form-7/v1/contact-forms/119/feedback",
-					// "https://wp.exhibitions-conferences.com/wp-json/contact-form-7/v1/contact-forms/119/feedback",
+					`https://${formUrl()}/wp-json/contact-form-7/v1/contact-forms/119/feedback`,
 					formData,
 					{
 						headers: { "Content-Type": "multipart/form-data" },

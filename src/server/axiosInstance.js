@@ -1,8 +1,20 @@
 import axios from "axios";
 
+const host = window.location.hostname;
+
+const url = () => {
+	switch (host) {
+		case "ica-eurasia.com":
+			return `dev.${host}`;
+		case "ica.events":
+			return `wp.${host}`;
+		case "exhibitions-conferences.com":
+			return `wp.${host}`;
+		default:
+			return `olololo.${host}`;
+	}
+};
+
 export const axiosInstance = axios.create({
-	baseURL: "https://dev.ica-eurasia.com/wp-json/acf/v3/pages",
-	// baseURL: "https://wp.ica.events/wp-json/acf/v3/pages",
-	// baseURL: "https://wp.exhibitions-conferences.com//wp-json/acf/v3/pages",
-	// timeout: 1000,
+	baseURL: `https://${url()}/wp-json/acf/v3/pages`,
 });

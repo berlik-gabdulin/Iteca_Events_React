@@ -52,7 +52,7 @@ export const OurGlobalNetwork = () => {
 				const partners = data.partners_info.filter((item) => {
 					return item.country === country;
 				});
-				console.log(partners);
+				// console.log(partners);
 				setCurPartner(partners);
 				setShowPartner(true);
 			}

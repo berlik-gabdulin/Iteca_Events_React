@@ -57,14 +57,25 @@ export const HeaderPage = () => {
 		}
 	};
 
-	console.log(getTitle());
+	// console.log(getTitle());
 
 	// useEffect(() => setImg(getTitle().pageImg), [getTitle()]);
+
+	const host = window.location.hostname;
+
+	const bgColor = () => {
+		switch (host) {
+			case "exhibitions-conferences.com":
+				return "rgba(63, 35, 25, 0.6)";
+			default:
+				return "rgba(15, 126, 134, 0.6)";
+		}
+	};
 
 	return (
 		<HeaderWrapper>
 			<HeaderBg img={getTitle().pageImg ? getTitle().pageImg : eventsImg} />
-			<HeaderBgOverlay />
+			<HeaderBgOverlay bgColor={bgColor()} />
 			<div className="container">
 				{getTitle().pageTitle !== "" ? (
 					<h3 className="section__title">
@@ -101,7 +112,6 @@ const HeaderBgOverlay = styled.div`
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: rgba(15, 126, 134, 0.6);
-	/* background-color: rgba(63, 35, 25, 0.6); */
+	background-color: ${({ bgColor }) => bgColor};
 	z-index: -1;
 `;

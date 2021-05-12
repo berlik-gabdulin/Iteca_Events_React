@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Partner = ({ data }) => {
 	const [partners, setPartners] = useState([]);
 
-	console.log("data", data);
+	// console.log("data", data);
 
 	useEffect(() => {
 		setPartners(data);

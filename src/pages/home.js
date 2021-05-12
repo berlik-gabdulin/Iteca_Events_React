@@ -41,7 +41,7 @@ export const Home = () => {
 
 			const filteredEvents = [
 				...arraySorted.filter((event) => {
-					console.log(event.industry);
+					// console.log(event.industry);
 					let title = event.project.toLowerCase(),
 						description = event.description.toLowerCase(),
 						location = event.location.toLowerCase(),
@@ -64,7 +64,7 @@ export const Home = () => {
 		};
 		setLoaderEvents(false);
 		filterEventsArray(search, filterCountry, filterIndustry);
-		console.log(filterCountry, filterIndustry);
+		// console.log(filterCountry, filterIndustry);
 	}, [eventsArr, search, filterCountry, filterIndustry]);
 
 	return (

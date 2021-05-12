@@ -23,7 +23,7 @@ export const EventByIndustry = () => {
 	useEffect(() => {
 		const buffer = events.filter((event) => event.industry === industry);
 		setEventsToShow(buffer);
-		console.log(eventsToShow);
+		// console.log(eventsToShow);
 	}, [events]);
 
 	return (
