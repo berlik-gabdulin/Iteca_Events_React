@@ -1,9 +1,13 @@
 import { useSelector } from "react-redux";
+import { SiteSwitch } from "./siteSwitch";
 
 export const HeaderHome = () => {
 	const data = useSelector((state) => {
 		return state.homeData;
 	});
+
+	document.title = `${SiteSwitch().title} | ${data.page_title}`;
+
 	return (
 		<div className="hero">
 			<div className="container">

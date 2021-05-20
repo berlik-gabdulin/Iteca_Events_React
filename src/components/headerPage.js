@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import styled from "styled-components";
+import { SiteSwitch } from "./siteSwitch";
 
 export const HeaderPage = () => {
 	const [img, setImg] = useState(``);
@@ -57,25 +58,12 @@ export const HeaderPage = () => {
 		}
 	};
 
-	// console.log(getTitle());
-
-	// useEffect(() => setImg(getTitle().pageImg), [getTitle()]);
-
-	const host = window.location.hostname;
-
-	const bgColor = () => {
-		switch (host) {
-			case "exhibitions-conferences.com":
-				return "rgba(63, 35, 25, 0.6)";
-			default:
-				return "rgba(15, 126, 134, 0.6)";
-		}
-	};
+	document.title = `${SiteSwitch().title} | ${getTitle().pageTitle}`;
 
 	return (
 		<HeaderWrapper>
 			<HeaderBg img={getTitle().pageImg ? getTitle().pageImg : eventsImg} />
-			<HeaderBgOverlay bgColor={bgColor()} />
+			<HeaderBgOverlay bgColor={SiteSwitch().backgroundColor} />
 			<div className="container">
 				{getTitle().pageTitle !== "" ? (
 					<h3 className="section__title">

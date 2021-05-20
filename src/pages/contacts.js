@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Loader } from "../components/loader";
+import { SiteSwitch } from "../components/siteSwitch";
 
 export const Contacts = () => {
 	const [success, setSuccess] = useState(false);
@@ -12,21 +13,6 @@ export const Contacts = () => {
 	const data = useSelector((state) => {
 		return state.contacts;
 	});
-
-	const host = window.location.hostname;
-
-	const formUrl = () => {
-		switch (host) {
-			case "ica-eurasia.com":
-				return `dev.${host}`;
-			case "ica.events":
-				return `wp.${host}`;
-			case "exhibitions-conferences.com":
-				return `wp.${host}`;
-			default:
-				return `olololo.${host}`;
-		}
-	};
 
 	const showSuccess = () => {
 		setSuccess(true);
@@ -57,7 +43,9 @@ export const Contacts = () => {
 
 			axios
 				.post(
-					`https://${formUrl()}/wp-json/contact-form-7/v1/contact-forms/119/feedback`,
+					`https://${
+						SiteSwitch().formUrl
+					}/wp-json/contact-form-7/v1/contact-forms/119/feedback`,
 					formData,
 					{
 						headers: { "Content-Type": "multipart/form-data" },

@@ -12,12 +12,13 @@ export const OurPartners = () => {
 	const partners = data.partners_info.filter(
 		(item) => item.partner_type === "partner"
 	);
+	console.log(partners.length);
 
 	return (
 		<section className="partners-group group">
 			<div className="container">
 				<div className="wrapper">
-					{orgs !== "" ? (
+					{orgs.length ? (
 						<>
 							<div className="group__title">CO-ORGANISERS</div>
 							<Partner data={orgs} />
@@ -25,7 +26,7 @@ export const OurPartners = () => {
 					) : null}
 				</div>
 				<div className="wrapper">
-					{partners !== "" ? (
+					{partners.length ? (
 						<>
 							<div className="group__title">PARTNERS</div>
 							<Partner data={partners} />

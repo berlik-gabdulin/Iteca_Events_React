@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Loader } from "./loader";
+import { SiteSwitch } from "../components/siteSwitch";
 
 export const Footer = () => {
 	const [success, setSuccess] = useState(false);
@@ -16,34 +17,6 @@ export const Footer = () => {
 			setStatus(false);
 			setSuccess(false);
 		}, 2000);
-	};
-
-	const host = window.location.hostname;
-
-	const siteName = () => {
-		switch (host) {
-			case "ica-eurasia.com":
-				return {
-					footerDesc: "ICA Eurasia. Commercial License No: 95244.",
-					formUrl: `dev.${host}`,
-				};
-			case "ica.events":
-				return {
-					footerDesc: "ICA (JV) LTD – ICA Group. Company number 11499614.",
-					formUrl: `wp.${host}`,
-				};
-			case "exhibitions-conferences.com":
-				return {
-					footerDesc:
-						"I.T.E. EXHIBITIONS & CONFERENCES LIMITED – ITE E&C. Company number 02933850.",
-					formUrl: `wp.${host}`,
-				};
-			default:
-				return {
-					footerDesc: "ololo",
-					formUrl: `olololo.${host}`,
-				};
-		}
 	};
 
 	const formik = useFormik({
@@ -67,7 +40,7 @@ export const Footer = () => {
 			axios
 				.post(
 					`https://${
-						siteName().formUrl
+						SiteSwitch().formUrl
 					}/wp-json/contact-form-7/v1/contact-forms/120/feedback`,
 					formData,
 					{
@@ -95,7 +68,7 @@ export const Footer = () => {
 				<div className="container">
 					<div className="footer__text">
 						<p>
-							Copyright © 2021 {siteName().footerDesc} All right reserved.{" "}
+							Copyright © 2021 {SiteSwitch().footerDesc} All right reserved.{" "}
 							<a
 								href="http://www.ica-eurasia.com/privacy.html"
 								target="_blank"

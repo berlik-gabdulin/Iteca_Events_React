@@ -10,13 +10,9 @@ export const Home = () => {
 	const dispatch = useDispatch();
 	const { getEventsArrThunk } = EventsService();
 	const fetchStatus = useSelector(({ fetchStatus }) => fetchStatus);
-	const [
-		eventsArr,
-		industry,
-	] = useSelector(({ eventsArr, homeData: { industry } }) => [
-		eventsArr,
-		industry,
-	]);
+	const [eventsArr, industry] = useSelector(
+		({ eventsArr, homeData: { industry } }) => [eventsArr, industry]
+	);
 	const [search, setSearch] = useState("");
 	const [filterCountry, setFilterCountry] = useState("");
 	const [filterIndustry, setFilterIndustry] = useState("");
