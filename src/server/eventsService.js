@@ -33,7 +33,7 @@ export const EventsService = () => {
 				let newDate = date.split(" ")[0].split(".");
 				return `${newDate[2]}-${newDate[1]}-${newDate[0]}`;
 			} else {
-				return event.beginDate;
+				return date;
 			}
 		};
 
@@ -42,6 +42,8 @@ export const EventsService = () => {
 
 		let beginDate = new Date(event.beginDate.split(" ")[0]),
 			endDate = new Date(event.endDate);
+
+		let pastEvent = new Date() > endDate;
 
 		if (
 			beginDate.toLocaleString("en", { month: "long" }) ===
@@ -95,6 +97,7 @@ export const EventsService = () => {
 			country,
 			industry: event.industry,
 			website: event.programme,
+			pastEvent,
 		};
 		if (country !== "Azerbaijan") {
 			eventObj = {

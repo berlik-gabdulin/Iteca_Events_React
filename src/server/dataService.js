@@ -46,6 +46,7 @@ export const DataService = () => {
 				};
 
 				let contactsData = res.data.find((item) => item.id === 21).acf;
+				console.log("contactsData: ", contactsData);
 				contactsData = {
 					...contactsData,
 					hours: contactsData.hours.split("<br />"),

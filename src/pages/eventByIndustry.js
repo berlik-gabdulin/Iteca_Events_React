@@ -32,9 +32,11 @@ export const EventByIndustry = () => {
 			<div className="search">
 				<div className="cards">
 					{eventsToShow.length ? (
-						eventsToShow.map((event, index) => {
-							return <EventCard event={event} key={index} />;
-						})
+						eventsToShow
+							.filter((event) => !event.pastEvent)
+							.map((event, index) => {
+								return <EventCard event={event} key={index} />;
+							})
 					) : (
 						<Loader />
 					)}

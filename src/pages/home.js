@@ -113,9 +113,11 @@ export const Home = () => {
 					</div>
 					<div className="cards">
 						{!loaderEvents ? (
-							eventsToShow.map((item) => {
-								return <EventCard event={item} key={item.id} />;
-							})
+							eventsToShow
+								.filter((event) => !event.pastEvent)
+								.map((item) => {
+									return <EventCard event={item} key={item.id} />;
+								})
 						) : (
 							<CardsWrapper>
 								<Loader />
