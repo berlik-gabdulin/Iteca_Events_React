@@ -17,7 +17,6 @@ export const Home = () => {
 	const [filterCountry, setFilterCountry] = useState("");
 	const [filterIndustry, setFilterIndustry] = useState("");
 	const [eventsToShow, setEventsToShow] = useState([""]);
-	const [loaderEvents, setLoaderEvents] = useState(true);
 
 	useEffect(() => {
 		if (!fetchStatus) {
@@ -55,10 +54,8 @@ export const Home = () => {
 					);
 				}),
 			];
-
 			setEventsToShow(filteredEvents);
 		};
-		setLoaderEvents(false);
 		filterEventsArray(search, filterCountry, filterIndustry);
 		// console.log(filterCountry, filterIndustry);
 	}, [eventsArr, search, filterCountry, filterIndustry]);
@@ -112,7 +109,7 @@ export const Home = () => {
 						</div>
 					</div>
 					<div className="cards">
-						{!loaderEvents ? (
+						{eventsArr.length ? (
 							eventsToShow
 								.filter((event) => !event.pastEvent)
 								.map((item) => {
@@ -135,6 +132,7 @@ export default Home;
 const CardsWrapper = styled.div`
 	min-height: 100px;
 	display: flex;
+	width: 100%;
 	justify-content: center;
 	align-items: center;
 `;

@@ -68,6 +68,9 @@ const ItemCard = styled.div`
 	backdrop-filter: blur(10px);
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.3);
+	@media screen and (max-width: 768px) {
+		min-height: auto;
+	}
 `;
 
 const ItemCardTitle = styled.div`
