@@ -7,8 +7,8 @@ export const SiteSwitch = () => {
 				footerDesc: "ICA Eurasia. Commercial License No: 95244.",
 				formUrl: `dev.${host}`,
 				title: "ICA Eurasia",
-				mainColor: "#3c6e72",
-				secondColor: "#3c6e72",
+				mainColor: "#0f7e86",
+				secondColor: "#7bbfc4",
 				backgroundColor: "rgba(15, 126, 134, 0.6)",
 			};
 		case "ica.events":
@@ -16,8 +16,8 @@ export const SiteSwitch = () => {
 				footerDesc: "ICA (JV) LTD – ICA Group. Company number 11499614.",
 				formUrl: `wp.${host}`,
 				title: "ICA Events",
-				mainColor: "#3c6e72",
-				secondColor: "#3c6e72",
+				mainColor: "#0f7e86",
+				secondColor: "#7bbfc4",
 				backgroundColor: "rgba(15, 126, 134, 0.6)",
 			};
 		case "exhibitions-conferences.com":
@@ -27,7 +27,7 @@ export const SiteSwitch = () => {
 				formUrl: `wp.${host}`,
 				title: "EXHIBITIONS & CONFERENCES",
 				mainColor: "#de5624",
-				secondColor: "#de5624",
+				secondColor: "#ff7542",
 				backgroundColor: "rgba(63, 35, 25, 0.6)",
 			};
 		default:
@@ -36,9 +36,9 @@ export const SiteSwitch = () => {
 				formUrl: `olololo.${host}`,
 				formUrl: `wp.exhibitions-conferences.com`,
 				title: "Developmet Title",
-				mainColor: "#3c6e72",
-				secondColor: "#222",
-				backgroundColor: "rgba(15, 126, 134, 0.6)",
+				mainColor: "#de5624",
+				secondColor: "#ff7542",
+				backgroundColor: "rgba(63, 35, 25, 0.6)",
 			};
 	}
 };

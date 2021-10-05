@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { SiteSwitch } from "./siteSwitch";
 
 export const Partner = ({ data }) => {
 	const [partners, setPartners] = useState([]);
@@ -14,7 +15,7 @@ export const Partner = ({ data }) => {
 		const description = partner.description.split("<br />");
 
 		return (
-			<Item key={index}>
+			<Item key={index} mainColor={SiteSwitch().mainColor}>
 				<ItemCard>
 					<ItemCardTitle>
 						<img src={partner.logo_url} alt="" />
@@ -159,12 +160,12 @@ const ItemCardLink = styled.a`
 	box-sizing: border-box;
 	border-radius: 10px;
 	text-decoration: none;
-	color: #0f7e86;
+	color: ${({ mainColor }) => mainColor};
 	font-weight: 500;
 	font-size: 18px;
 	transition: 0.3s;
 	&:hover {
-		box-shadow: 0 0px 30px 3px #0f7e8655;
+		box-shadow: ${({ mainColor }) => `0 0px 30px 3px ${mainColor}55`};
 	}
 `;
 
