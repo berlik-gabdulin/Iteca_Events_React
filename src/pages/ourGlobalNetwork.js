@@ -6,6 +6,7 @@ import World from "@svg-maps/world";
 import { eurasia, ourNetwork } from "../components/network";
 import { useSelector } from "react-redux";
 import { Partner } from "../components/partnerCard";
+import Members from "../components/members";
 
 export const OurGlobalNetwork = () => {
 	const data = useSelector((state) => {
@@ -66,6 +67,9 @@ export const OurGlobalNetwork = () => {
 				<SVGMap map={ICAWorld} />
 			</MapWrapper>
 			{showPartner ? <Partner data={curPartner} /> : null}
+			{showPartner && curPartner[0]?.country === "United Kingdom" ? (
+				<Members />
+			) : null}
 		</div>
 	);
 };
