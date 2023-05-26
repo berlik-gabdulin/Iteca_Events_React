@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { SVGMap } from 'react-svg-map';
 import 'react-svg-map/lib/index.css';
@@ -10,18 +10,65 @@ import { scrollTo } from '../libs/scrollTo';
 import Members from '../components/members';
 
 export const OurGlobalNetwork = () => {
-  const data = useSelector((state) => {
-    return state.partners;
-  });
+  const data = useSelector((state) => state.partners);
   const [country, setCountry] = useState('Select country');
   const [ourNetwork, setOurNetwork] = useState([]);
   const [showPartner, setShowPartner] = useState(false);
   const [curPartner, setCurPartner] = useState([]);
-  const map = document.querySelector('.svg-map');
+  const mapRef = useRef(null);
 
   useEffect(() => {
     setOurNetwork(data.partners_info.map((partner) => partner.country));
   }, [data]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (map) {
+      const locations = map.querySelectorAll('.svg-map__location');
+      locations.forEach((location) => {
+        const name = location.getAttribute('name');
+        if (ourNetwork.includes(name)) {
+          location.classList.add('svg-map__location-ica');
+        }
+      });
+    }
+  }, [ourNetwork]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (map) {
+      const countryNameHandler = (e) => {
+        if (e.target.classList.contains('svg-map__location-ica')) {
+          setCountry(e.target.getAttribute('name'));
+          map.removeEventListener('mouseover', countryNameHandler);
+        }
+      };
+      map.addEventListener('mouseover', countryNameHandler);
+      return () => {
+        map.removeEventListener('mouseover', countryNameHandler);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (map) {
+      const clickHandler = (e) => {
+        if (e.target.classList.contains('svg-map__location-ica')) {
+          const partners = data.partners_info.filter((item) => {
+            return item.country === country;
+          });
+          setCurPartner(partners);
+          setShowPartner(true);
+          scrollTo({ id: curPartner.partners_name, duration: 1000 });
+        }
+      };
+      map.addEventListener('click', clickHandler);
+      return () => {
+        map.removeEventListener('click', clickHandler);
+      };
+    }
+  }, [country]);
 
   const ICAWorld = {
     label: 'Map of ICA Eurasia',
@@ -29,52 +76,10 @@ export const OurGlobalNetwork = () => {
     locations: World.locations.filter((item) => eurasia.includes(item.name)),
   };
 
-  const setClass = () => {
-    [...document.querySelectorAll('.svg-map__location')].map((item) => {
-      if (ourNetwork.includes(item.getAttribute('name'))) {
-        item.classList.add('svg-map__location-ica');
-      }
-    });
-  };
-
-  setClass();
-  useEffect(() => {
-    getCountry();
-  }, [ourNetwork]);
-
-  useEffect(() => {
-    getPartner();
-  }, [country]);
-
-  const countryNameHandler = (e) => {
-    if (e.target.classList.contains('svg-map__location-ica')) {
-      setCountry(e.target.getAttribute('name'));
-      map && map.removeEventListener('mouseover', countryNameHandler);
-    }
-  };
-
-  const getCountry = () => {
-    map && map.addEventListener('mouseover', countryNameHandler);
-  };
-
-  const getPartner = useCallback(() => {
-    document.querySelector('.svg-map').addEventListener('click', (e) => {
-      if (e.target.classList.contains('svg-map__location-ica')) {
-        const partners = data.partners_info.filter((item) => {
-          return item.country === country;
-        });
-        console.log(partners);
-        setCurPartner(partners);
-        setShowPartner(true);
-        scrollTo({ id: curPartner.partners_name, duration: 1000 });
-      }
-    });
-  }, [country]);
-
   return (
     <div className='container'>
       <Title>{country}</Title>
-      <MapWrapper>
+      <MapWrapper ref={mapRef}>
         <SVGMap map={ICAWorld} />
       </MapWrapper>
       {showPartner ? <Partner data={curPartner} /> : null}
