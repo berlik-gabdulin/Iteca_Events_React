@@ -1,48 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { SiteSwitch } from './siteSwitch';
 
 export const Partner = ({ data }) => {
-  const [partners, setPartners] = useState([]);
+  const description = data ? data.description.split('<br />') : null;
 
-  // console.log("data", data);
-
-  useEffect(() => {
-    setPartners(data);
-  }, [data]);
-
-  return partners.map((partner, index) => {
-    const description = partner.description.split('<br />');
-
-    return (
-      <Item key={index} mainColor={SiteSwitch().mainColor}>
-        <ItemCard>
-          <ItemCardTitle>
-            <img src={partner.logo_url} alt='' />
-            <p>{partner.partners_name}</p>
-          </ItemCardTitle>
-          <ItemCardText>
-            {description.map((text, index) => {
-              if (text !== '') {
-                return <p key={index}>{text}</p>;
-              }
-            })}
-          </ItemCardText>
-          <ItemCardLink
-            href={partner.website_link}
-            nofollow='nofollow'
-            rel='noreferrer'
-            target='_blank'
-          >
-            Go to website
-          </ItemCardLink>
-        </ItemCard>
-        <ItemImg>
-          <img src={partner.photo_url} alt='' />
-        </ItemImg>
-      </Item>
-    );
-  });
+  return (
+    <Item mainColor={SiteSwitch().mainColor} id={data.partners_name}>
+      <ItemCard>
+        <ItemCardTitle>
+          <img src={data.logo_url} alt='' />
+          <p>{data.partners_name}</p>
+        </ItemCardTitle>
+        <ItemCardText>
+          {description.map((text, index) => {
+            if (text !== '') {
+              return <p key={index}>{text}</p>;
+            }
+          })}
+        </ItemCardText>
+        <ItemCardLink
+          href={data.website_link}
+          nofollow='nofollow'
+          rel='noreferrer'
+          target='_blank'
+        >
+          Go to website
+        </ItemCardLink>
+      </ItemCard>
+      <ItemImg>
+        <img src={data.photo_url} alt='' />
+      </ItemImg>
+    </Item>
+  );
 };
 
 const Item = styled.div`
