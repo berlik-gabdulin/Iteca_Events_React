@@ -7,7 +7,9 @@ export const SiteSwitch = () => {
       formUrl: `dev.ica-eurasia.com`,
       title: 'ICA Eurasia',
       mainColor: '#3c6e72',
-      secondColor: '#3c6e72',
+      darkColor: '#14454A	',
+      lightColor: '#77B3B9',
+      lighterColor: '#88B4B9',
       backgroundColor: 'rgba(15, 126, 134, 0.6)',
     };
   } else if (host.includes('ica.events')) {
@@ -16,7 +18,9 @@ export const SiteSwitch = () => {
       formUrl: `wp.ica.events`,
       title: 'ICA Events',
       mainColor: '#3c6e72',
-      secondColor: '#3c6e72',
+      darkColor: '#14454A	',
+      lightColor: '#77B3B9',
+      lighterColor: '#88B4B9',
       backgroundColor: 'rgba(15, 126, 134, 0.6)',
     };
   } else if (host.includes('exhibitions-conferences.com')) {
@@ -26,7 +30,9 @@ export const SiteSwitch = () => {
       formUrl: `wp.exhibitions-conferences.com`,
       title: 'EXHIBITIONS & CONFERENCES',
       mainColor: '#de5624',
-      secondColor: '#de5624',
+      darkColor: '#90300C	',
+      lightColor: '#EF8159	',
+      lighterColor: '#EF9E81',
       backgroundColor: 'rgba(63, 35, 25, 0.6)',
     };
   } else {
@@ -34,9 +40,11 @@ export const SiteSwitch = () => {
       footerDesc: 'ololo',
       formUrl: `wp.exhibitions-conferences.com`,
       title: 'Developmet Title',
-      mainColor: '#3c6e72',
-      secondColor: '#222',
-      backgroundColor: 'rgba(15, 126, 134, 0.6)',
+      mainColor: '#de5624',
+      darkColor: '#90300C	',
+      lightColor: '#EF8159	',
+      lighterColor: '#EF9E81',
+      backgroundColor: 'rgba(63, 35, 25, 0.6)',
     };
   }
 };

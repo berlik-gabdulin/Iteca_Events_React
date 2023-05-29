@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { EventCard } from '../components/eventCard';
 import { Loader } from '../components/loader';
 import { EventsService } from '../server/eventsService';
+import { Container } from '../components/styles';
 
 export const EventByIndustry = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const EventByIndustry = () => {
   }, [events]);
 
   return (
-    <div className='container'>
+    <Container>
       <Title>{title}</Title>
       <div className='search'>
         <div className='cards'>
@@ -42,7 +43,7 @@ export const EventByIndustry = () => {
           )}
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

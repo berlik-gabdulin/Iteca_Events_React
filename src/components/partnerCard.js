@@ -24,6 +24,7 @@ export const Partner = ({ data }) => {
           nofollow='nofollow'
           rel='noreferrer'
           target='_blank'
+          mainColor={SiteSwitch().mainColor}
         >
           Go to website
         </ItemCardLink>
@@ -53,7 +54,7 @@ const ItemCard = styled.div`
   background: linear-gradient(
     178.7deg,
     rgba(34, 34, 34, 0.6) -28.71%,
-    rgba(15, 126, 134, 0.36) 103.8%,
+    ${SiteSwitch().backgroundColor} 103.8%,
     rgba(255, 255, 255, 0.18) 103.8%
   );
   backdrop-filter: blur(10px);
@@ -128,7 +129,6 @@ const ItemCardText = styled.div`
   text-align: justify;
   padding: 0 25px;
   color: #fff;
-  letter-spacing: 0.1em;
   font-weight: 500;
   font-size: 16px;
   line-height: 140%;
@@ -153,12 +153,12 @@ const ItemCardLink = styled.a`
   box-sizing: border-box;
   border-radius: 10px;
   text-decoration: none;
-  color: ${({ mainColor }) => mainColor};
+  color: ${({ mainColor }) => (mainColor ? mainColor : '#444')};
   font-weight: 500;
   font-size: 18px;
   transition: 0.3s;
   &:hover {
-    box-shadow: ${({ mainColor }) => `0 0px 30px 3px ${mainColor}55`};
+    box-shadow: ${({ mainColor }) => `0 0px 30px 3px ${mainColor}`};
   }
 `;
 

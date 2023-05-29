@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
 import { SiteSwitch } from './siteSwitch';
+import { Container, SectionTitle } from './styles';
 
 export const HeaderPage = () => {
   const [img, setImg] = useState(``);
@@ -64,13 +65,13 @@ export const HeaderPage = () => {
     <HeaderWrapper>
       <HeaderBg img={getTitle().pageImg ? getTitle().pageImg : eventsImg} />
       <HeaderBgOverlay bgColor={SiteSwitch().backgroundColor} />
-      <div className="container">
+      <Container>
         {getTitle().pageTitle !== '' ? (
-          <h3 className="section__title">
+          <SectionTitle>
             {getTitle().pageTitle ? getTitle().pageTitle : eventsTitle}
-          </h3>
+          </SectionTitle>
         ) : null}
-      </div>
+      </Container>
     </HeaderWrapper>
   );
 };

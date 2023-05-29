@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { Partner } from '../components/partnerCard';
 import { scrollTo } from '../libs/scrollTo';
 import Members from '../components/members';
+import { Container } from '../components/styles';
 
 export const OurGlobalNetwork = () => {
   const data = useSelector((state) => state.partners);
@@ -76,7 +77,7 @@ export const OurGlobalNetwork = () => {
   }, [curPartner]);
 
   return (
-    <div className='container'>
+    <Container>
       <Title>{country}</Title>
       <MapWrapper>
         <SVGMap map={ICAWorld} />
@@ -85,7 +86,7 @@ export const OurGlobalNetwork = () => {
       {showPartner && curPartner?.country === 'United Kingdom' ? (
         <Members />
       ) : null}
-    </div>
+    </Container>
   );
 };
 

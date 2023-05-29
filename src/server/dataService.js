@@ -17,6 +17,7 @@ export const DataService = () => {
     axiosInstance
       .get(_baseUrl)
       .then((res) => {
+        console.log(res);
         const homeData = res.data.find((item) => item.id === 2).acf;
 
         const aboutData = res.data.find((item) => item.id === 12).acf;
