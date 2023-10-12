@@ -823,10 +823,7 @@ input {
   .events-cards .cards {
     justify-content: space-around;
   }
-  .contacts-content .container {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+
   .contacts-content .col-50 .text-group {
     margin-bottom: 35px;
   }

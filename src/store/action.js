@@ -7,7 +7,6 @@ export const SET_EVENTS_DATA = "SET_EVENTS_DATA";
 export const SET_PARTNERS_DATA = "SET_PARTNERS_DATA";
 export const SET_CONTACTS = "SET_CONTACTS";
 export const SET_NETWORK_DATA = "SET_NETWORK_DATA";
-export const SET_INDUSTRY_LIST = "SET_INDUSTRY_LIST";
 export const SET_FETCH_STATUS = "SET_FETCH_STATUS";
 
 const setData = (data) => {
@@ -72,12 +71,6 @@ const setNetworkData = (data) => {
 		payload: data,
 	};
 };
-const setIndustryList = (data) => {
-	return {
-		type: SET_INDUSTRY_LIST,
-		payload: data,
-	};
-};
 
 const setFetchStatus = (bool) => {
 	return {
@@ -97,5 +90,4 @@ export {
 	setContacts,
 	setFetchStatus,
 	setNetworkData,
-	setIndustryList,
 };

@@ -78,7 +78,7 @@ export const Contacts = () => {
                 <p>{data.address}</p>
               </TextGroup>
             ) : null}
-            {data.hours !== [''] ? (
+            {data.hours.length ? (
               <TextGroup>
                 <p>Hours:</p>
                 <p>

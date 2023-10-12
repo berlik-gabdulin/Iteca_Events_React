@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
@@ -6,8 +5,6 @@ import { SiteSwitch } from './siteSwitch';
 import { Container, SectionTitle } from './styles';
 
 export const HeaderPage = () => {
-  const [img, setImg] = useState(``);
-
   const {
     aboutTitle,
     contactsTitle,

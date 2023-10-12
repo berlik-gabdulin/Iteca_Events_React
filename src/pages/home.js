@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { EventCard } from '../components/eventCard';
 import { Loader } from '../components/loader';
 import { EventsService } from '../server/eventsService';
-import { setSortedEvents } from '../store/action';
 import { Container } from '../components/styles';
 import { SiteSwitch } from '../components/siteSwitch';
 
@@ -28,6 +27,7 @@ export const Home = () => {
     if (!fetchStatus) {
       dispatch(getEventsArrThunk());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export const Home = () => {
 
       const filteredEvents = [
         ...arraySorted.filter((event) => {
-          let title = event.project.toLowerCase(),
+          let title = event.title.toLowerCase(),
             description = event.description.toLowerCase(),
             location = event.location.toLowerCase(),
             country = event.country.toLowerCase(),
@@ -62,6 +62,10 @@ export const Home = () => {
       setEventsToShow(filteredEvents);
     };
     filterEventsArray(search, filterCountry, filterIndustry);
+    const arr = new Set(
+      eventsArr.map((item) => item.image_profile.split('/')[2])
+    );
+    console.log(arr);
   }, [eventsArr, search, filterCountry, filterIndustry]);
 
   return (
@@ -190,7 +194,7 @@ const SearchItemText = styled.p`
   font-size: 18px;
 `;
 
-const CardsWrapper = styled.div`
+export const CardsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;

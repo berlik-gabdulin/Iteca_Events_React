@@ -17,6 +17,7 @@ export const Partner = ({ data }) => {
             if (text !== '') {
               return <p key={index}>{text}</p>;
             }
+            return true;
           })}
         </ItemCardText>
         <ItemCardLink

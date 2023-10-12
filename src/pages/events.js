@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { Loader } from '../components/loader';
 import { Container } from '../components/styles';
 

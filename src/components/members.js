@@ -1,9 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useFormik } from 'formik';
-import { Fragment, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import { Loader } from '../components/loader';
 import { SiteSwitch } from '../components/siteSwitch';
 
 const Members = () => {
@@ -25,7 +21,11 @@ const Members = () => {
         ? data.contacts.map((member) => {
             return (
               <div className='member' key={member?.name}>
-                <img src={member.photo.url} className='member__photo' />
+                <img
+                  src={member.photo.url}
+                  className='member__photo'
+                  alt={member?.name}
+                />
                 <h5 className='member__name'>{member?.name}</h5>
                 <p className='member__industry'>{member.industry}</p>
                 <a href={`tel:${member.phone}`} className='member__link'>

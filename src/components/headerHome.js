@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { SiteSwitch } from './siteSwitch';
 import { scrollTo } from './../libs/scrollTo';
 import { Container } from './styles';
-import { useEffect } from 'react';
 
 export const HeaderHome = () => {
   const data = useSelector((state) => {
